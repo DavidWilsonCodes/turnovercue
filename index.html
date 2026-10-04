@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="TurnoverCue turns Airbnb, VRBO and other iCal booking calendars into a cleaner-ready turnover schedule in your browser. No account. No upload. No financial data." />
+<title>TurnoverCue — Cleaner schedule from your booking calendar</title>
+<style>
+:root{--bg:#f7f7f4;--card:#fff;--text:#17201d;--muted:#66706b;--line:#dde3df;--brand:#1f7a5a;--brand2:#125942;--soft:#eaf5f0;--warn:#9b5c00;--warnbg:#fff4dc;--danger:#9d2c2c;--dangerbg:#fdecec;--shadow:0 12px 36px rgba(20,40,32,.08)}
+*{box-sizing:border-box}body{margin:0;font:16px/1.5 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:var(--bg)}
+a{color:var(--brand2)}.wrap{max-width:1120px;margin:auto;padding:0 20px}.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}.brand{font-weight:800;font-size:20px;letter-spacing:-.02em}.pill{font-size:12px;background:var(--soft);color:var(--brand2);padding:5px 9px;border-radius:999px;font-weight:700}.hero{padding:68px 0 38px;text-align:center}.hero h1{font-size:clamp(38px,7vw,66px);line-height:1.02;letter-spacing:-.045em;margin:0 auto 20px;max-width:850px}.hero p{font-size:19px;color:var(--muted);max-width:730px;margin:0 auto 26px}.trust{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;color:var(--muted);font-size:14px}.trust b{color:var(--text)}.app{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:24px;margin:30px auto 70px}.toprow{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.toprow h2{margin:0 0 5px;font-size:24px}.sub{color:var(--muted);margin:0}.drop{margin-top:20px;border:2px dashed #b7c8c0;background:#fbfdfc;border-radius:18px;padding:34px;text-align:center;transition:.15s}.drop.drag{border-color:var(--brand);background:var(--soft)}.drop input{display:none}.btn{appearance:none;border:0;border-radius:12px;padding:12px 16px;font:inherit;font-weight:750;cursor:pointer}.btn.primary{background:var(--brand);color:#fff}.btn.primary:hover{background:var(--brand2)}.btn.secondary{background:#eef2f0;color:var(--text)}.btn.ghost{background:transparent;border:1px solid var(--line)}.btn:disabled{opacity:.45;cursor:not-allowed}.controls{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end;margin:22px 0}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}input[type=date],select{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:#fff;font:inherit}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.stat{border:1px solid var(--line);border-radius:14px;padding:14px}.stat .n{font-size:28px;font-weight:850}.stat .l{font-size:13px;color:var(--muted)}.notice{padding:12px 14px;border-radius:12px;background:var(--soft);color:var(--brand2);margin:16px 0}.notice.warn{background:var(--warnbg);color:var(--warn)}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;min-width:800px}th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line)}th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:#fafbfa;position:sticky;top:0}tr:last-child td{border-bottom:0}.tag{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:800}.tag.same{background:var(--dangerbg);color:var(--danger)}.tag.soon{background:var(--warnbg);color:var(--warn)}.tag.ok{background:var(--soft);color:var(--brand2)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.message{white-space:pre-wrap;border:1px solid var(--line);background:#fafbfa;border-radius:14px;padding:16px;margin-top:14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:45px 0 70px}.feature{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}.feature h3{margin:5px 0 8px}.feature p{color:var(--muted);margin:0}.premium{margin:0 0 70px;padding:30px;border-radius:22px;background:#17201d;color:white;display:grid;grid-template-columns:1.3fr .7fr;gap:20px;align-items:center}.premium p{color:#cbd5d0}.premium ul{margin:12px 0 0;padding-left:20px;color:#dce5e1}.premium .box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:18px}.footer{border-top:1px solid var(--line);padding:30px 0 45px;color:var(--muted);font-size:14px}.hidden{display:none!important}.filelist{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.filechip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 10px;font-size:13px}.small{font-size:13px;color:var(--muted)}
+@media(max-width:760px){.controls,.premium{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.features{grid-template-columns:1fr}.hero{padding-top:38px}.app{padding:16px;border-radius:18px}.toprow{display:block}}
+@media print{body{background:#fff}.nav,.hero,.drop,.controls,.actions,.features,.premium,.footer,.notice,.filelist{display:none!important}.wrap{max-width:none;padding:0}.app{box-shadow:none;border:0;margin:0;padding:0}.tablewrap{border:0;overflow:visible}table{min-width:0}th{position:static}.message{display:none}.toprow h2:after{content:" — cleaner turnover schedule"}.stats{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav"><div class="brand">TurnoverCue</div><div class="pill">FREE · PRIVATE · BROWSER-ONLY</div></nav>
+  <section class="hero">
+    <h1>Turn booking calendars into a cleaner-ready schedule.</h1>
+    <p>Drop in Airbnb, VRBO or other <strong>.ics</strong> calendar files. TurnoverCue finds checkout days, flags same-day turns, and creates a clean schedule you can print, export or send to your cleaner.</p>
+    <div class="trust"><span>🔒 <b>Your files never leave this browser</b></span><span>⚡ No account</span><span>💳 No card</span><span>📱 Works on phone or desktop</span></div>
+  </section>
+
+  <main class="app" id="app">
+    <div class="toprow"><div><h2>Your turnover schedule</h2><p class="sub">Upload one or more iCal files. Each filename becomes the property name.</p></div><button class="btn ghost" id="demoBtn">Load demo</button></div>
+    <label class="drop" id="dropZone">
+      <input type="file" id="fileInput" accept=".ics,text/calendar" multiple />
+      <div style="font-size:34px">🗓️</div>
+      <strong>Drop .ics files here</strong><br><span class="small">or tap to choose files</span>
+    </label>
+    <div id="fileList" class="filelist"></div>
+
+    <section id="results" class="hidden">
+      <div class="controls">
+        <div class="field"><label>Show from</label><input type="date" id="fromDate"></div>
+        <div class="field"><label>Through</label><input type="date" id="toDate"></div>
+        <button class="btn secondary" id="resetDates">Next 60 days</button>
+      </div>
+      <div id="privacyNote" class="notice"><strong>Airbnb-aware filtering:</strong> events labelled blocked/not available and cancelled events are ignored. Calendar titles/descriptions are never shown in exports. Generic iCal files are supported as a beta and may not distinguish owner blocks from reservations.</div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="statTurns">0</div><div class="l">turnovers</div></div>
+        <div class="stat"><div class="n" id="statSame">0</div><div class="l">same-day turns</div></div>
+        <div class="stat"><div class="n" id="statProps">0</div><div class="l">properties</div></div>
+        <div class="stat"><div class="n" id="statDays">0</div><div class="l">days shown</div></div>
+      </div>
+      <div id="statusNote"></div>
+      <div class="tablewrap"><table><thead><tr><th>Clean date</th><th>Property</th><th>Checkout</th><th>Next check-in</th><th>Turn window</th><th>Priority</th></tr></thead><tbody id="scheduleBody"></tbody></table></div>
+      <div class="actions">
+        <button class="btn primary" id="copyBtn">Copy cleaner message</button>
+        <button class="btn secondary" id="csvBtn">Export CSV</button>
+        <button class="btn secondary" id="printBtn">Print / save PDF</button>
+        <button class="btn ghost" id="clearBtn">Clear data</button>
+      </div>
+      <div class="message" id="messageBox"></div>
+    </section>
+  </main>
+
+  <section class="features">
+    <div class="feature"><div>🧹</div><h3>Made for the handoff</h3><p>Shows the cleaner what matters: where, when, and whether another guest arrives the same day.</p></div>
+    <div class="feature"><div>🔐</div><h3>Private by design</h3><p>No booking data is uploaded to us. TurnoverCue runs locally in your browser and ignores event descriptions in its outputs.</p></div>
+    <div class="feature"><div>🪶</div><h3>No new system</h3><p>No PMS migration, team onboarding or cleaner app. Turn the calendar you already have into something useful.</p></div>
+  </section>
+
+  <section class="premium">
+    <div><div class="pill" style="display:inline-block;background:#dff6eb">IF PEOPLE WANT IT</div><h2 style="font-size:32px;margin:12px 0 8px">The paid version should remove the upload step.</h2><p>We are not building that infrastructure until real usage proves it is worth maintaining.</p><ul><li>Automatic read-only calendar sync</li><li>Change and cancellation alerts</li><li>Recurring cleaner messages</li><li>Multiple cleaner assignments</li><li>Proof / completion tracking</li></ul></div>
+    <div class="box"><strong>Possible premium</strong><div style="font-size:36px;font-weight:850;margin:7px 0">$4–$8<span style="font-size:16px;font-weight:500"> / month</span></div><div style="color:#cbd5d0">Only if the free tool earns repeat users first.</div></div>
+  </section>
+
+  <footer class="footer"><strong>TurnoverCue</strong> is an independent utility and is not affiliated with Airbnb, VRBO or other booking platforms. Calendar timing depends on the source file. Always verify critical same-day turnovers.</footer>
+</div>
+<script>
+(() => {
+  const state={events:[],files:[]};
+  const $=id=>document.getElementById(id);
+  const drop=$('dropZone'), input=$('fileInput');
+  const pad=n=>String(n).padStart(2,'0');
+  const ymd=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+  const dateOnly=s=>{
+    const raw=(s||'').trim().replace(/Z$/,'');
+    const m=raw.match(/^(\d{4})(\d{2})(\d{2})(?:T(\d{2})(\d{2})(\d{2})?)?/);
+    if(!m) return null;
+    return new Date(+m[1],+m[2]-1,+m[3],+(m[4]||0),+(m[5]||0),+(m[6]||0));
+  };
+  function unfold(text){return text.replace(/\r?\n[ \t]/g,'');}
+  function parseICS(text,property){
+    const src=unfold(text); const blocks=src.split('BEGIN:VEVENT').slice(1);
+    const isAirbnb=/Airbnb Inc|@airbnb\.com/i.test(src); let ignored=0;
+    const events=blocks.map(b=>{
+      const body=b.split('END:VEVENT')[0]; const lines=body.split(/\r?\n/);
+      const get=name=>{const line=lines.find(l=>l.toUpperCase().startsWith(name));return line?line.slice(line.indexOf(':')+1).trim():''};
+      const start=dateOnly(get('DTSTART')); const end=dateOnly(get('DTEND'));
+      const summary=get('SUMMARY').toLowerCase(); const status=get('STATUS').toUpperCase();
+      if(!start||!end) return null;
+      if(status==='CANCELLED'){ignored++;return null;}
+      if(isAirbnb && /(not available|blocked)/i.test(summary)){ignored++;return null;}
+      return {property,start,end,uid:get('UID')||`${property}-${+start}-${+end}`,source:isAirbnb?'Airbnb':'Generic iCal'};
+    }).filter(Boolean);
+    return {events,ignored,isAirbnb};
+  }
+  function buildTurns(){
+    const byProp={}; state.events.forEach(e=>(byProp[e.property]??=[]).push(e));
+    const turns=[];
+    Object.entries(byProp).forEach(([property,events])=>{
+      events.sort((a,b)=>a.start-b.start);
+      events.forEach((e,i)=>{
+        const next=events.find((x,j)=>j!==i && x.start>=e.end);
+        const gap=next?Math.round((next.start-e.end)/86400000):null;
+        turns.push({property,clean:new Date(e.end),checkout:new Date(e.end),next:next?new Date(next.start):null,gap});
+      });
+    });
+    return turns.sort((a,b)=>a.clean-b.clean || a.property.localeCompare(b.property));
+  }
+  function filtered(){
+    const f=new Date($('fromDate').value+'T00:00:00'), t=new Date($('toDate').value+'T23:59:59');
+    return buildTurns().filter(x=>x.clean>=f&&x.clean<=t);
+  }
+  function fmt(d){return d?d.toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short',year:'numeric'}):'—'}
+  function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+  function priority(t){if(t.gap===0)return ['SAME-DAY','same'];if(t.gap===1)return ['NEXT-DAY','soon'];return ['STANDARD','ok']}
+  function render(){
+    if(!state.events.length){$('results').classList.add('hidden');return}
+    $('results').classList.remove('hidden'); const rows=filtered();
+    $('scheduleBody').innerHTML=rows.map(t=>{const p=priority(t);return `<tr><td><strong>${fmt(t.clean)}</strong></td><td>${esc(t.property)}</td><td>${fmt(t.checkout)}</td><td>${fmt(t.next)}</td><td>${t.next?(t.gap===0?'Same day':t.gap+' day'+(t.gap===1?'':'s')):'No later booking found'}</td><td><span class="tag ${p[1]}">${p[0]}</span></td></tr>`}).join('');
+    $('statTurns').textContent=rows.length; $('statSame').textContent=rows.filter(x=>x.gap===0).length; $('statProps').textContent=new Set(rows.map(x=>x.property)).size;
+    const f=new Date($('fromDate').value+'T00:00:00'),t=new Date($('toDate').value+'T00:00:00');$('statDays').textContent=Math.max(0,Math.round((t-f)/86400000)+1);
+    $('statusNote').innerHTML=rows.some(x=>x.gap===0)?`<div class="notice warn"><strong>Same-day turnover detected.</strong> Verify these manually with your booking platform before relying on the schedule.</div>`:'';
+    $('messageBox').textContent=message(rows);
+  }
+  function message(rows){
+    if(!rows.length)return 'No turnovers in this date range.';
+    const grouped={}; rows.forEach(r=>(grouped[ymd(r.clean)]??=[]).push(r));
+    let out='CLEANING SCHEDULE\n';
+    Object.entries(grouped).forEach(([date,items])=>{out+=`\n${fmt(new Date(date+'T12:00:00'))}\n`;items.forEach(t=>{const p=priority(t)[0];out+=`• ${t.property}${p==='SAME-DAY'?' — ⚠ SAME-DAY TURN':''}${t.next?' · next check-in '+fmt(t.next):''}\n`;});});
+    out+='\nPlease confirm any same-day turns directly with the host.'; return out;
+  }
+  function defaultDates(){const n=new Date();$('fromDate').value=ymd(n);$('toDate').value=ymd(addDays(n,60));}
+  async function handleFiles(files){
+    for(const file of [...files]){if(!/\.ics$/i.test(file.name)&&file.type!=='text/calendar')continue;const text=await file.text();const property=file.name.replace(/\.ics$/i,'').replace(/[_-]+/g,' ').trim()||'Property';const parsed=parseICS(text,property);state.events.push(...parsed.events);state.files.push({name:file.name,count:parsed.events.length,ignored:parsed.ignored,isAirbnb:parsed.isAirbnb});}
+    $('fileList').innerHTML=state.files.map(f=>`<span class="filechip">${esc(f.name)} · ${f.count} ${f.isAirbnb?'Airbnb reservations':'calendar events'}${f.ignored?` · ${f.ignored} blocked/cancelled ignored`:''}</span>`).join(''); render();
+  }
+  input.addEventListener('change',e=>handleFiles(e.target.files));
+  ['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('drag')}));
+  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('drag')}));
+  drop.addEventListener('drop',e=>handleFiles(e.dataTransfer.files));
+  $('fromDate').addEventListener('change',render);$('toDate').addEventListener('change',render);$('resetDates').onclick=()=>{defaultDates();render()};
+  $('clearBtn').onclick=()=>{state.events=[];state.files=[];input.value='';$('fileList').innerHTML='';render()};
+  $('printBtn').onclick=()=>window.print();
+  $('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText($('messageBox').textContent);const b=$('copyBtn'),old=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=old,1200)}catch{alert('Copy failed. Select the message and copy it manually.')}};
+  $('csvBtn').onclick=()=>{const rows=filtered();const data=[['clean_date','property','checkout','next_checkin','turn_window_days','priority'],...rows.map(t=>[ymd(t.clean),t.property,ymd(t.checkout),t.next?ymd(t.next):'',t.gap??'',priority(t)[0]])];const csv=data.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='turnovercue-cleaner-schedule.csv';a.click();URL.revokeObjectURL(a.href)};
+  $('demoBtn').onclick=()=>{
+    state.events=[];state.files=[];
+    const now=new Date();const at=(days)=>new Date(now.getFullYear(),now.getMonth(),now.getDate()+days);
+    state.events=[
+      {property:'Bay Cottage',start:at(2),end:at(5),uid:'1',source:'Airbnb'},{property:'Bay Cottage',start:at(5),end:at(8),uid:'2',source:'Airbnb'},{property:'Bay Cottage',start:at(11),end:at(15),uid:'3',source:'Airbnb'},
+      {property:'City Loft',start:at(1),end:at(4),uid:'4',source:'Airbnb'},{property:'City Loft',start:at(6),end:at(9),uid:'5',source:'Airbnb'},{property:'City Loft',start:at(10),end:at(13),uid:'6',source:'Airbnb'}
+    ];state.files=[{name:'Bay_Cottage.ics',count:3,ignored:1,isAirbnb:true},{name:'City_Loft.ics',count:3,ignored:0,isAirbnb:true}];$('fileList').innerHTML=state.files.map(f=>`<span class="filechip">${f.name} · ${f.count} Airbnb reservations${f.ignored?` · ${f.ignored} blocked/cancelled ignored`:''}</span>`).join('');render();
+  };
+  defaultDates();
+})();
+</script>
+</body>
+</html>
