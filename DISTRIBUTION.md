@@ -105,11 +105,38 @@ Human owner step: enter the email David wants associated with the submission.
 
 Submitting the form publicly under the owner's identity is a human boundary. No payment or featured placement should be accepted during this experiment.
 
-## Secondary channels
+## Secondary discovery channels
 
-Only use channels where product/tool promotion is explicitly allowed.
+These are broader than the STR niche, so they are secondary rather than substitutes for qualified host traffic.
 
-Avoid unsolicited promotional posts in host communities that prohibit self-promotion. Useful discussion and support can be separate from promotion; do not disguise advertising as advice.
+### Directree
+https://www.directree.io/
+
+- free to submit
+- no pay-to-rank positioning
+- useful for another indexed software profile
+- use the same core positioning as The Tool Directory
+
+### Ignlab Launch
+https://launch.ignlab.net/
+
+- free
+- no account required to submit
+- reviewed before publication
+- no paid ranking or featured upsell according to its current FAQ
+
+### Channels deliberately rejected for this test
+
+**r/airbnb_hosts**  
+Recent promotional/developer posts are repeatedly removed with explicit “No self promotion” moderator/bot responses. Do not post TurnoverCue there as promotion.
+
+**STR Specialist directory**  
+Current vendor listing flow leads to a US$149 one-off editorial review after fit check. That violates the A$0 experiment rule, so skip it unless later evidence justifies paid distribution.
+
+**Airbnb Host Recommendations Directory**  
+This directory is for host-recommended service providers, not software self-promotion. Do not try to force TurnoverCue into it.
+
+Only use communities where product/tool promotion is explicitly allowed. Useful discussion and support can be separate from promotion; do not disguise advertising as advice.
 
 ## Signal thresholds
 
