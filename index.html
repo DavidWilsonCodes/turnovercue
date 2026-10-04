@@ -164,6 +164,20 @@ a{color:var(--brand2)}.wrap{max-width:1120px;margin:auto;padding:0 20px}.nav{dis
 (() => {
   const state={events:[],files:[]};
   const $=id=>document.getElementById(id);
+  function trackEvent(name){
+    try{
+      const key='turnovercue_event_'+name;
+      if(sessionStorage.getItem(key)) return;
+      sessionStorage.setItem(key,'1');
+    }catch{}
+    const frame=document.createElement('iframe');
+    frame.src='events/'+name+'.html?ts='+Date.now();
+    frame.setAttribute('aria-hidden','true');
+    frame.tabIndex=-1;
+    frame.style.cssText='position:absolute;width:1px;height:1px;border:0;opacity:0;pointer-events:none;left:-9999px';
+    document.body.appendChild(frame);
+    setTimeout(()=>frame.remove(),6000);
+  }
   const drop=$('dropZone'), input=$('fileInput');
   const pad=n=>String(n).padStart(2,'0');
   const ymd=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
@@ -229,7 +243,9 @@ a{color:var(--brand2)}.wrap{max-width:1120px;margin:auto;padding:0 20px}.nav{dis
   function defaultDates(){const n=new Date();$('fromDate').value=ymd(n);$('toDate').value=ymd(addDays(n,60));}
   async function handleFiles(files){
     for(const file of [...files]){if(!/\.ics$/i.test(file.name)&&file.type!=='text/calendar')continue;const text=await file.text();const property=file.name.replace(/\.ics$/i,'').replace(/[_-]+/g,' ').trim()||'Property';const parsed=parseICS(text,property);state.events.push(...parsed.events);state.files.push({name:file.name,count:parsed.events.length,ignored:parsed.ignored,isAirbnb:parsed.isAirbnb});}
-    $('fileList').innerHTML=state.files.map(f=>`<span class="filechip">${esc(f.name)} · ${f.count} ${f.isAirbnb?'Airbnb reservations':'calendar events'}${f.ignored?` · ${f.ignored} blocked/cancelled ignored`:''}</span>`).join(''); render();
+    $('fileList').innerHTML=state.files.map(f=>`<span class="filechip">${esc(f.name)} · ${f.count} ${f.isAirbnb?'Airbnb reservations':'calendar events'}${f.ignored?` · ${f.ignored} blocked/cancelled ignored`:''}</span>`).join('');
+    if(state.events.length) trackEvent('calendar-loaded');
+    render();
   }
   input.addEventListener('change',e=>handleFiles(e.target.files));
   ['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('drag')}));
@@ -237,9 +253,9 @@ a{color:var(--brand2)}.wrap{max-width:1120px;margin:auto;padding:0 20px}.nav{dis
   drop.addEventListener('drop',e=>handleFiles(e.dataTransfer.files));
   $('fromDate').addEventListener('change',render);$('toDate').addEventListener('change',render);$('resetDates').onclick=()=>{defaultDates();render()};
   $('clearBtn').onclick=()=>{state.events=[];state.files=[];input.value='';$('fileList').innerHTML='';render()};
-  $('printBtn').onclick=()=>window.print();
-  $('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText($('messageBox').textContent);const b=$('copyBtn'),old=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=old,1200)}catch{alert('Copy failed. Select the message and copy it manually.')}};
-  $('csvBtn').onclick=()=>{const rows=filtered();const data=[['clean_date','property','checkout','next_checkin','turn_window_days','priority'],...rows.map(t=>[ymd(t.clean),t.property,ymd(t.checkout),t.next?ymd(t.next):'',t.gap??'',priority(t)[0]])];const csv=data.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='turnovercue-cleaner-schedule.csv';a.click();URL.revokeObjectURL(a.href)};
+  $('printBtn').onclick=()=>{trackEvent('print-schedule');window.print()};
+  $('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText($('messageBox').textContent);trackEvent('copy-cleaner-message');const b=$('copyBtn'),old=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=old,1200)}catch{alert('Copy failed. Select the message and copy it manually.')}};
+  $('csvBtn').onclick=()=>{const rows=filtered();const data=[['clean_date','property','checkout','next_checkin','turn_window_days','priority'],...rows.map(t=>[ymd(t.clean),t.property,ymd(t.checkout),t.next?ymd(t.next):'',t.gap??'',priority(t)[0]])];const csv=data.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='turnovercue-cleaner-schedule.csv';a.click();URL.revokeObjectURL(a.href);trackEvent('export-csv')};
   $('demoBtn').onclick=()=>{
     state.events=[];state.files=[];
     const now=new Date();const at=(days)=>new Date(now.getFullYear(),now.getMonth(),now.getDate()+days);
