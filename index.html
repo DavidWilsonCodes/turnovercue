@@ -3,8 +3,43 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="description" content="TurnoverCue turns Airbnb, VRBO and other iCal booking calendars into a cleaner-ready turnover schedule in your browser. No account. No upload. No financial data." />
+<meta name="description" content="Free cleaner schedule tool for self-managing Airbnb and VRBO hosts. Upload iCal booking calendars, flag same-day turns, and create cleaner-ready schedules privately in your browser." />
+<link rel="canonical" href="https://davidwilsoncodes.github.io/turnovercue/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="TurnoverCue — Cleaner schedule from your booking calendar" />
+<meta property="og:description" content="For self-managing Airbnb and VRBO hosts who coordinate cleaners manually. Turn booking calendars into cleaner-ready turnover schedules." />
+<meta property="og:url" content="https://davidwilsoncodes.github.io/turnovercue/" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="TurnoverCue — Cleaner schedule from your booking calendar" />
+<meta name="twitter:description" content="Free private browser tool for turning STR booking calendars into cleaner-ready schedules." />
 <title>TurnoverCue — Cleaner schedule from your booking calendar</title>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"SoftwareApplication",
+      "name":"TurnoverCue",
+      "url":"https://davidwilsoncodes.github.io/turnovercue/",
+      "applicationCategory":"BusinessApplication",
+      "operatingSystem":"Web",
+      "description":"A free browser-based utility for self-managing short-term-rental hosts that turns iCalendar booking files into cleaner-ready turnover schedules.",
+      "audience":{"@type":"Audience","audienceType":"Self-managing short-term-rental hosts and small vacation-rental operators"},
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"AUD"}
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"What file do I upload?","acceptedAnswer":{"@type":"Answer","text":"TurnoverCue uses standard .ics or iCalendar files exported or shared by booking platforms such as Airbnb, VRBO and others."}},
+        {"@type":"Question","name":"Can I upload more than one property?","acceptedAnswer":{"@type":"Answer","text":"Yes. Upload multiple .ics files and TurnoverCue combines them into one turnover schedule. The filename is used as the property name."}},
+        {"@type":"Question","name":"Does TurnoverCue see my prices or payouts?","acceptedAnswer":{"@type":"Answer","text":"No. TurnoverCue does not connect to your booking account and does not need access to financial information."}},
+        {"@type":"Question","name":"Does my booking data get uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The current free version processes the calendar locally in your browser."}},
+        {"@type":"Question","name":"What is a same-day turnover?","acceptedAnswer":{"@type":"Answer","text":"A same-day turnover happens when one guest checks out and the next guest checks in on the same date."}}
+      ]
+    }
+  ]
+}
+</script>
 <style>
 :root{--bg:#f7f7f4;--card:#fff;--text:#17201d;--muted:#66706b;--line:#dde3df;--brand:#1f7a5a;--brand2:#125942;--soft:#eaf5f0;--warn:#9b5c00;--warnbg:#fff4dc;--danger:#9d2c2c;--dangerbg:#fdecec;--shadow:0 12px 36px rgba(20,40,32,.08)}
 *{box-sizing:border-box}body{margin:0;font:16px/1.5 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:var(--bg)}
