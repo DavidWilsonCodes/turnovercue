@@ -83,6 +83,7 @@
         <button class="btn primary" id="zipBtn">Download renamed ZIP</button>
         <button class="btn secondary" id="csvBtn">Download mapping manifest</button>
         <button class="btn secondary" id="copyBtn">Copy filename list</button>
+        <button class="btn secondary" id="shareBtn">Share CreativeBatch</button>
       </div>
     </section>
   </main>
@@ -290,6 +291,14 @@
   };
 
   $('copyBtn').onclick=async()=>{const text=currentRows().map(r=>r.renamed).join('\n');try{await navigator.clipboard.writeText(text);const b=$('copyBtn'),old=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=old,1100)}catch{alert('Copy failed.')}};
+  $('shareBtn').onclick=async()=>{
+    const shareData={title:'CreativeBatch',text:'Free browser tool for mapping Figma Buzz Bulk Create exports back to CSV rows and generating clean filenames.',url:'https://davidwilsoncodes.github.io/turnovercue/creativebatch/'};
+    try{
+      if(navigator.share){await navigator.share(shareData)}
+      else{await navigator.clipboard.writeText(shareData.url);const b=$('shareBtn'),old=b.textContent;b.textContent='Link copied ✓';setTimeout(()=>b.textContent=old,1100)}
+      trackEvent('share');
+    }catch(err){if(err?.name!=='AbortError')console.error(err)}
+  };
   $('interestBtn').onclick=()=>{
     trackEvent('pro-interest');
     $('interestBtn').disabled=true;
