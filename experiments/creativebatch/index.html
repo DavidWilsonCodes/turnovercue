@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="CreativeBatch helps performance designers and agencies rename large batches of ad creative files consistently before upload. Private, browser-only and free." />
+<title>CreativeBatch — Rename ad creative batches fast</title>
+<style>
+:root{--bg:#f7f7f4;--card:#fff;--text:#171d1b;--muted:#66706b;--line:#dde3df;--brand:#6b4eff;--brand2:#5037d6;--soft:#f0edff;--danger:#9d2c2c;--dangerbg:#fdecec;--good:#126b4c;--goodbg:#eaf6f0;--shadow:0 14px 38px rgba(30,24,70,.09)}
+*{box-sizing:border-box}body{margin:0;font:16px/1.5 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}.wrap{max-width:1160px;margin:auto;padding:0 20px}.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}.brand{font-weight:900;font-size:21px;letter-spacing:-.03em}.pill{font-size:12px;font-weight:850;letter-spacing:.05em;border-radius:999px;padding:6px 10px;background:var(--soft);color:var(--brand2)}.hero{text-align:center;padding:62px 0 30px}.hero h1{font-size:clamp(40px,7vw,68px);line-height:1.01;letter-spacing:-.05em;margin:0 auto 18px;max-width:920px}.audience{display:inline-block;background:var(--soft);color:var(--brand2);font-weight:800;font-size:14px;border-radius:999px;padding:8px 12px;margin-bottom:14px}.hero p{font-size:19px;color:var(--muted);max-width:770px;margin:0 auto 22px}.trust{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;font-size:14px;color:var(--muted)}.trust b{color:var(--text)}
+.app{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:24px;margin:28px auto 68px}.toprow{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.toprow h2{margin:0 0 6px;font-size:25px}.sub{color:var(--muted);margin:0}.btn{appearance:none;border:0;border-radius:12px;padding:12px 16px;font-weight:800;cursor:pointer}.btn.primary{background:var(--brand);color:white}.btn.primary:hover{background:var(--brand2)}.btn.secondary{background:#efefed;color:var(--text)}.btn.ghost{background:white;border:1px solid var(--line)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.drop{display:block;width:100%;margin-top:20px;border:2px dashed #c8c1ef;background:#fcfbff;border-radius:18px;padding:34px;text-align:center;cursor:pointer;transition:.15s}.drop.drag{border-color:var(--brand);background:var(--soft)}.drop input{display:none}.small{font-size:13px;color:var(--muted)}.fileline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}.fileline .small{flex:1}.rules{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0 12px}.field label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:850;margin-bottom:6px}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:#fff}.pattern{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;margin-bottom:18px}.pattern-help{font-size:13px;color:var(--muted);margin-top:6px}.pattern-help code{background:#f1f2f0;border-radius:6px;padding:2px 5px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.stat{border:1px solid var(--line);border-radius:14px;padding:14px}.stat .n{font-size:28px;font-weight:900}.stat .l{font-size:13px;color:var(--muted)}.notice{padding:12px 14px;border-radius:12px;background:var(--goodbg);color:var(--good);margin:14px 0}.notice.bad{background:var(--dangerbg);color:var(--danger)}.tablewrap{border:1px solid var(--line);border-radius:14px;overflow:auto}table{width:100%;border-collapse:collapse;min-width:760px}th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}th{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);background:#fafbfa}tr:last-child td{border-bottom:0}.old{color:var(--muted)}.new{font-weight:800}.tag{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:850}.tag.ok{background:var(--goodbg);color:var(--good)}.tag.bad{background:var(--dangerbg);color:var(--danger)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.explain{margin:0 0 72px}.section-head{text-align:center;max-width:820px;margin:0 auto 24px}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.11em;color:var(--brand2)}.section-head h2{font-size:clamp(28px,4vw,40px);line-height:1.12;letter-spacing:-.03em;margin:8px 0 10px}.section-head p{color:var(--muted);font-size:17px;margin:0}.how-grid,.benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:white;border:1px solid var(--line);border-radius:18px;padding:22px}.card h3{margin:7px 0 7px}.card p{margin:0;color:var(--muted)}.privacy{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;background:var(--soft);border:1px solid #d8d2ff;border-radius:22px;padding:28px;margin-bottom:72px}.privacy .icon{font-size:36px}.privacy h2{margin:4px 0 7px}.privacy p{margin:0;color:#4f4a6d}.premium{margin:0 0 70px;padding:30px;border-radius:22px;background:#17152a;color:white;display:grid;grid-template-columns:1.3fr .7fr;gap:20px;align-items:center}.premium p,.premium li{color:#d7d2ef}.premium .box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:18px}.footer{border-top:1px solid var(--line);padding:30px 0 45px;color:var(--muted);font-size:14px}.hidden{display:none!important}
+@media(max-width:850px){.rules{grid-template-columns:1fr 1fr}.how-grid,.benefit-grid{grid-template-columns:1fr}.premium,.privacy{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.pattern{grid-template-columns:1fr}.toprow{display:block}.toprow .btn{margin-top:12px}}
+@media(max-width:560px){.rules{grid-template-columns:1fr}.app{padding:16px;border-radius:18px}.hero{padding-top:38px}.stats{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav"><div class="brand">CreativeBatch</div><div class="pill">RUN #2 · FREE PROTOTYPE</div></nav>
+  <section class="hero">
+    <h1>Rename 50 ad creatives without touching 50 filenames.</h1>
+    <div class="audience">For performance designers, media buyers and small agencies exporting creative batches.</div>
+    <p>Drop in exported PNG, JPG, WebP or other campaign files, define one naming pattern, preview every filename, then download a renamed ZIP plus a CSV manifest.</p>
+    <div class="trust"><span>🔒 <b>Files stay in your browser</b></span><span>⚡ No account</span><span>📦 One ZIP</span><span>🧠 Saved naming template</span></div>
+  </section>
+
+  <main class="app">
+    <div class="toprow"><div><h2>Batch rename your creative files</h2><p class="sub">Your originals are never modified. CreativeBatch creates renamed copies inside a ZIP.</p></div><button class="btn ghost" id="demoBtn">Load demo</button></div>
+
+    <label class="drop" id="dropZone">
+      <input type="file" id="fileInput" multiple />
+      <div style="font-size:36px">🗂️</div>
+      <strong>Drop creative files here</strong><br><span class="small">or tap to choose files · images, video, design exports or any other file type</span>
+    </label>
+
+    <div class="fileline"><div class="small" id="fileSummary">No files loaded yet.</div><button class="btn ghost hidden" id="clearBtn">Clear</button></div>
+
+    <section id="workspace" class="hidden">
+      <div class="rules">
+        <div class="field"><label>Campaign</label><input id="campaign" placeholder="spring-sale"></div>
+        <div class="field"><label>Concept / hook</label><input id="concept" placeholder="testimonial"></div>
+        <div class="field"><label>Platform</label><select id="platform"><option>meta</option><option>tiktok</option><option>youtube</option><option>linkedin</option><option>display</option><option>other</option></select></div>
+        <div class="field"><label>Start number</label><input id="startNum" type="number" min="1" value="1"></div>
+      </div>
+
+      <div class="pattern">
+        <div class="field"><label>Naming pattern</label><input id="pattern" value="{campaign}_{concept}_{platform}_{n}"><div class="pattern-help">Tokens: <code>{campaign}</code> <code>{concept}</code> <code>{platform}</code> <code>{original}</code> <code>{n}</code> <code>{date}</code></div></div>
+        <button class="btn secondary" id="saveTemplateBtn">Save template</button>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="n" id="statFiles">0</div><div class="l">files</div></div>
+        <div class="stat"><div class="n" id="statValid">0</div><div class="l">ready</div></div>
+        <div class="stat"><div class="n" id="statDupes">0</div><div class="l">duplicate names</div></div>
+        <div class="stat"><div class="n" id="statChars">0</div><div class="l">characters renamed</div></div>
+      </div>
+
+      <div id="status"></div>
+      <div class="tablewrap">
+        <table><thead><tr><th>#</th><th>Original</th><th>New filename</th><th>Status</th></tr></thead><tbody id="previewBody"></tbody></table>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="zipBtn">Download renamed ZIP</button>
+        <button class="btn secondary" id="csvBtn">Download CSV manifest</button>
+        <button class="btn secondary" id="copyBtn">Copy filename list</button>
+      </div>
+    </section>
+  </main>
+
+  <section class="explain">
+    <div class="section-head"><span class="eyebrow">THE JOB</span><h2>Built for the boring 10 minutes after export</h2><p>When a campaign has dozens of variants, naming and ordering the files can take longer than it deserves — especially when the naming convention has to survive handoff to a media buyer or client.</p></div>
+    <div class="how-grid">
+      <article class="card"><div>1️⃣</div><h3>Drop the whole export batch</h3><p>Keep the original files untouched and work on copies in the browser.</p></article>
+      <article class="card"><div>2️⃣</div><h3>Define the naming rule once</h3><p>Use campaign, concept, platform, original filename, date and an automatic sequence number.</p></article>
+      <article class="card"><div>3️⃣</div><h3>Ship one clean handoff</h3><p>Download renamed files in one ZIP and a manifest that maps old names to new names.</p></article>
+    </div>
+  </section>
+
+  <section class="explain">
+    <div class="section-head"><span class="eyebrow">WHY IT MIGHT MATTER</span><h2>Consistency without a new workflow system</h2></div>
+    <div class="benefit-grid">
+      <article class="card"><div>⚡</div><h3>Batch speed</h3><p>Rename dozens or hundreds of files with one rule instead of editing names one by one.</p></article>
+      <article class="card"><div>🤝</div><h3>Cleaner handoff</h3><p>Give media buyers, clients and teammates predictable file names they can sort and search.</p></article>
+      <article class="card"><div>🧾</div><h3>Manifest included</h3><p>Keep a CSV mapping of original names to renamed copies for QA and traceability.</p></article>
+    </div>
+  </section>
+
+  <section class="privacy"><div class="icon">🔒</div><div><span class="eyebrow">PRIVATE BY DESIGN</span><h2>Your creative files stay on your device</h2><p>CreativeBatch reads the files locally, creates renamed copies locally, and builds the ZIP locally. Nothing is uploaded to a CreativeBatch server.</p></div></section>
+
+  <section class="premium">
+    <div><div class="pill" style="display:inline-block;background:#ece8ff">ONLY IF USAGE EARNS IT</div><h2 style="font-size:32px;margin:12px 0 8px">The paid version should remove the naming setup too.</h2><p>If designers repeatedly use the free batch tool, the stronger paid wedge is deeper into the workflow — not charging for a ZIP.</p><ul><li>Figma plugin that names frames before export</li><li>Saved team naming systems and client presets</li><li>Google Drive / Dropbox destination upload</li><li>Automatic dimensions, aspect ratios and ad-format tokens</li><li>Team QA rules and duplicate prevention</li></ul></div>
+    <div class="box"><strong>Possible future Pro</strong><div style="font-size:35px;font-weight:900;margin:7px 0">A$5–A$15<span style="font-size:16px;font-weight:500"> / month</span></div><div style="color:#d7d2ef">Only after repeat use or explicit willingness to pay.</div></div>
+  </section>
+
+  <footer class="footer"><strong>CreativeBatch</strong> is a working market-test prototype. Files are processed locally. Always inspect downloaded filenames before campaign upload.</footer>
+</div>
+
+<script>
+(() => {
+  const $=id=>document.getElementById(id);
+  const state={files:[],demo:false};
+  const enc=new TextEncoder();
+  const clean=s=>String(s||'').trim().toLowerCase().replace(/[^a-z0-9._-]+/g,'-').replace(/-+/g,'-').replace(/^[-_.]+|[-_.]+$/g,'')||'untitled';
+  const baseName=name=>name.replace(/\.[^.]+$/,'');
+  const ext=name=>{const m=name.match(/(\.[^.]+)$/);return m?m[1].toLowerCase():''};
+  const pad=(n,w=2)=>String(n).padStart(w,'0');
+  const dateToken=()=>{const d=new Date();return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())};
+  const natural=(a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true,sensitivity:'base'});
+
+  function currentRows(){
+    const files=[...state.files].sort(natural);
+    const campaign=clean($('campaign').value||'campaign');
+    const concept=clean($('concept').value||'creative');
+    const platform=clean($('platform').value||'other');
+    const start=Math.max(1,parseInt($('startNum').value||'1',10));
+    const pattern=$('pattern').value.trim()||'{campaign}_{concept}_{platform}_{n}';
+    return files.map((file,i)=>{
+      const n=pad(start+i,Math.max(2,String(start+files.length-1).length));
+      const original=clean(baseName(file.name));
+      let stem=pattern
+        .replaceAll('{campaign}',campaign)
+        .replaceAll('{concept}',concept)
+        .replaceAll('{platform}',platform)
+        .replaceAll('{original}',original)
+        .replaceAll('{n}',n)
+        .replaceAll('{date}',dateToken());
+      stem=stem.replace(/\.[^.]+$/,'');
+      stem=stem.replace(/[\\/:*?"<>|]+/g,'-').replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^[-_.]+|[-_.]+$/g,'');
+      const renamed=(stem||'untitled')+ext(file.name);
+      return {file,index:i+1,renamed,original:file.name};
+    });
+  }
+
+  function render(){
+    if(!state.files.length){$('workspace').classList.add('hidden');$('clearBtn').classList.add('hidden');$('fileSummary').textContent='No files loaded yet.';return;}
+    $('workspace').classList.remove('hidden');$('clearBtn').classList.remove('hidden');
+    $('fileSummary').textContent=state.demo ? state.files.length+' demo filenames loaded — add real files to create a ZIP.' : state.files.length+' files loaded · sorted naturally by original filename';
+    const rows=currentRows();
+    const counts={};rows.forEach(r=>counts[r.renamed]=(counts[r.renamed]||0)+1);
+    const dupes=rows.filter(r=>counts[r.renamed]>1);
+    $('previewBody').innerHTML=rows.map(r=>{
+      const bad=counts[r.renamed]>1;
+      return '<tr><td>'+r.index+'</td><td class="old">'+escapeHtml(r.original)+'</td><td class="new">'+escapeHtml(r.renamed)+'</td><td><span class="tag '+(bad?'bad':'ok')+'">'+(bad?'DUPLICATE':'READY')+'</span></td></tr>';
+    }).join('');
+    $('statFiles').textContent=rows.length;
+    $('statDupes').textContent=new Set(dupes.map(x=>x.renamed)).size;
+    $('statValid').textContent=rows.length-dupes.length;
+    $('statChars').textContent=rows.reduce((sum,r)=>sum+Math.abs(r.original.length-r.renamed.length),0);
+    $('zipBtn').disabled=state.demo||!!dupes.length;
+    $('csvBtn').disabled=!!dupes.length;
+    $('copyBtn').disabled=!!dupes.length;
+    $('status').innerHTML=dupes.length?'<div class="notice bad"><strong>Duplicate filenames detected.</strong> Change the pattern or numbering before export.</div>':'<div class="notice"><strong>Ready.</strong> Every generated filename is unique.</div>';
+  }
+  const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+
+  function handleFiles(list){
+    const files=[...list].filter(f=>f && f.name);
+    if(!files.length)return;
+    state.files=files;state.demo=false;render();
+  }
+
+  const drop=$('dropZone');
+  $('fileInput').addEventListener('change',e=>handleFiles(e.target.files));
+  ['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('drag')}));
+  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('drag')}));
+  drop.addEventListener('drop',e=>handleFiles(e.dataTransfer.files));
+  $('clearBtn').onclick=()=>{state.files=[];state.demo=false;$('fileInput').value='';render();};
+  ['campaign','concept','platform','startNum','pattern'].forEach(id=>$(id).addEventListener('input',render));
+  $('saveTemplateBtn').onclick=()=>{localStorage.setItem('creativebatch.pattern',$('pattern').value);const b=$('saveTemplateBtn'),old=b.textContent;b.textContent='Saved ✓';setTimeout(()=>b.textContent=old,1100);};
+  const saved=localStorage.getItem('creativebatch.pattern');if(saved)$('pattern').value=saved;
+
+  $('demoBtn').onclick=()=>{
+    const names=['meta_square_hook-a.png','meta_square_hook-b.png','meta_story_hook-a.png','meta_story_hook-b.png','meta_reel_ugc-1.mp4','meta_reel_ugc-2.mp4','static-price-card-v3.jpg','static-price-card-v4.jpg'];
+    state.files=names.map(name=>({name,size:0,type:'application/octet-stream'}));state.demo=true;$('campaign').value='spring-sale';$('concept').value='launch';render();
+  };
+
+  $('copyBtn').onclick=async()=>{
+    const text=currentRows().map(r=>r.renamed).join('\n');
+    try{await navigator.clipboard.writeText(text);const b=$('copyBtn'),old=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=old,1100);}catch{alert('Copy failed.');}
+  };
+  $('csvBtn').onclick=()=>{
+    const rows=currentRows();
+    const data=[['original_filename','renamed_filename'],...rows.map(r=>[r.original,r.renamed])];
+    const csv=data.map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');
+    downloadBlob(new Blob([csv],{type:'text/csv'}),'creativebatch-manifest.csv');
+  };
+
+  function crcTable(){
+    const table=new Uint32Array(256);
+    for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?0xedb88320^(c>>>1):c>>>1;table[n]=c>>>0;}
+    return table;
+  }
+  const CRC=crcTable();
+  function crc32(bytes){let c=0xffffffff;for(const b of bytes)c=CRC[(c^b)&0xff]^(c>>>8);return (c^0xffffffff)>>>0;}
+  function dosTimeDate(d=new Date()){let time=(d.getHours()<<11)|(d.getMinutes()<<5)|(d.getSeconds()>>1);let date=((d.getFullYear()-1980)<<9)|((d.getMonth()+1)<<5)|d.getDate();return {time,date};}
+  function u16(v){return new Uint8Array([v&255,(v>>>8)&255])}
+  function u32(v){return new Uint8Array([v&255,(v>>>8)&255,(v>>>16)&255,(v>>>24)&255])}
+  function join(parts){const len=parts.reduce((n,p)=>n+p.length,0),out=new Uint8Array(len);let o=0;for(const p of parts){out.set(p,o);o+=p.length;}return out;}
+
+  async function makeZip(rows){
+    const locals=[],centrals=[];let offset=0;
+    for(const r of rows){
+      const data=new Uint8Array(await r.file.arrayBuffer());
+      const name=enc.encode(r.renamed);
+      const crc=crc32(data),size=data.length,{time,date}=dosTimeDate(r.file.lastModified?new Date(r.file.lastModified):new Date());
+      const local=join([u32(0x04034b50),u16(20),u16(0x0800),u16(0),u16(time),u16(date),u32(crc),u32(size),u32(size),u16(name.length),u16(0),name,data]);
+      locals.push(local);
+      const central=join([u32(0x02014b50),u16(20),u16(20),u16(0x0800),u16(0),u16(time),u16(date),u32(crc),u32(size),u32(size),u16(name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(offset),name]);
+      centrals.push(central);offset+=local.length;
+    }
+    const centralBlock=join(centrals);
+    const end=join([u32(0x06054b50),u16(0),u16(0),u16(rows.length),u16(rows.length),u32(centralBlock.length),u32(offset),u16(0)]);
+    return new Blob([...locals,centralBlock,end],{type:'application/zip'});
+  }
+
+  $('zipBtn').onclick=async()=>{
+    const b=$('zipBtn'),old=b.textContent;b.disabled=true;b.textContent='Building ZIP…';
+    try{const blob=await makeZip(currentRows());downloadBlob(blob,'creativebatch-renamed.zip');}
+    catch(err){console.error(err);alert('Could not build the ZIP. Please try a smaller batch.');}
+    finally{b.textContent=old;b.disabled=false;render();}
+  };
+  function downloadBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
+  render();
+})();
+</script>
+</body>
+</html>
