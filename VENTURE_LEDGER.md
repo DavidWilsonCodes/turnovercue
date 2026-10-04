@@ -1,5 +1,27 @@
 # One-Person Venture Studio — Experiment Ledger
 
+## Money Method Candidate #3 — Local Lead Generation
+
+**Status:** PILOT SYSTEM READY — no business pilot accepted yet.
+
+**Revenue mechanism:** after a free proof pilot, convert to monthly management, pay-per-qualified-lead, pay-per-booked-appointment, or hybrid pricing.
+
+**First recommended vertical:** roofing / roof repair / roof restoration.
+
+**Why this lane:** lead generation is closer to revenue than generic freelancing, and successful proof can later become a high-value service. Current Meta/Google benchmarks show home-improvement businesses already tolerate meaningful acquisition costs, although actual Australian results must be measured rather than assumed.
+
+**Proof strategy:** obtain permission from one business first; run a free 7-day management pilot under an agreed qualification definition; business keeps every lead; no fake claims or pre-sold consumer data.
+
+**Compliance rule:** do not build a random consumer-lead database and sell personal information later. Lead collection must clearly disclose who receives the enquiry and why.
+
+**Prepared asset:** LEAD_GEN_LAB.md
+
+**Capability feeder:** OWN_CLIENT_ADS_LAB.md — first learn/test ad creative and paid acquisition on our own assets whenever a real checkout path exists.
+
+**Counts toward 50?** No. It counts when a business pays to continue, pays per qualified lead/appointment, or otherwise generates real revenue from the service.
+
+---
+
 ## Money Method Candidate #2 — Productized Microservices / Upwork Service Factory
 
 **Status:** READY FOR MARKETPLACE SETUP — not yet live.
@@ -225,7 +247,7 @@ Distribution rule: identify the first 20–100 qualified eyeballs **before** bui
 ## Portfolio totals
 
 Experiments started: 2
-Money-method candidates prepared: 2
+Money-method candidates prepared: 3
 Money methods with live checkout: 0  
 Public market-ready assets: 1
 Live internal/lab prototypes: 1  
