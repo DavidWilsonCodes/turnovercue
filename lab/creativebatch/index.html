@@ -111,6 +111,20 @@
   const $=id=>document.getElementById(id);
   const state={files:[],csvRows:[],headers:[],demo:false};
   const enc=new TextEncoder();
+  function trackEvent(name){
+    try{
+      const key='creativebatch_event_'+name;
+      if(sessionStorage.getItem(key)) return;
+      sessionStorage.setItem(key,'1');
+    }catch{}
+    const frame=document.createElement('iframe');
+    frame.src='events/'+name+'.html?ts='+Date.now();
+    frame.setAttribute('aria-hidden','true');
+    frame.tabIndex=-1;
+    frame.style.cssText='position:absolute;width:1px;height:1px;border:0;opacity:0;pointer-events:none;left:-9999px';
+    document.body.appendChild(frame);
+    setTimeout(()=>frame.remove(),6000);
+  }
   const clean=s=>String(s??'').trim().replace(/\s+/g,'-').replace(/[\\/:*?"<>|]+/g,'-').replace(/-+/g,'-').replace(/^[-_.]+|[-_.]+$/g,'')||'untitled';
   const baseName=name=>name.replace(/\.[^.]+$/,'');
   const ext=name=>{const m=name.match(/(\.[^.]+)$/);return m?m[1].toLowerCase():''};
@@ -200,7 +214,10 @@
     if(!state.csvRows.length)$('status').innerHTML='<div class="notice warn"><strong>Add the source CSV.</strong> You can preview generic numbering now, but CSV-driven naming starts after the spreadsheet is loaded.</div>';
     else if(expected!==state.files.length)$('status').innerHTML='<div class="notice bad"><strong>Count mismatch.</strong> '+state.csvRows.length+' CSV rows × '+per+' files per row expects '+expected+' files, but '+state.files.length+' are loaded. Fix this before export.</div>';
     else if(dupes.size)$('status').innerHTML='<div class="notice bad"><strong>Duplicate filenames detected.</strong> Add another CSV field, {part}, or {n} to the pattern.</div>';
-    else $('status').innerHTML='<div class="notice"><strong>Mapping is internally consistent.</strong> Row count matches the asset count and every generated filename is unique. Still visually inspect the preview before export.</div>';
+    else {
+      $('status').innerHTML='<div class="notice"><strong>Mapping is internally consistent.</strong> Row count matches the asset count and every generated filename is unique. Still visually inspect the preview before export.</div>';
+      if(!state.demo) trackEvent('mapping-ready');
+    }
     const blocked=state.demo||mismatch||dupes.size>0;
     $('zipBtn').disabled=blocked;$('csvBtn').disabled=!state.csvRows.length||dupes.size>0;$('copyBtn').disabled=!state.csvRows.length||dupes.size>0;
   }
@@ -212,6 +229,7 @@
       const likely=state.headers.find(h=>/(filename|slug|id|code|language|locale|name)/.test(h))||state.headers[0];
       $('pattern').value='{'+likely+'}_{n}';
     }
+    if(state.csvRows.length) trackEvent('csv-loaded');
     render();
   }
 
@@ -249,7 +267,7 @@
   $('csvBtn').onclick=()=>{
     const rows=currentRows();const headers=['original_filename','renamed_filename','csv_row',...state.headers];
     const data=[headers,...rows.map(r=>[r.original,r.renamed,r.csv?r.rowIndex+2:'',...state.headers.map(h=>r.csv?.[h]??'')])];
-    const csv=data.map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');downloadBlob(new Blob([csv],{type:'text/csv'}),'creativebatch-mapping.csv');
+    const csv=data.map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');downloadBlob(new Blob([csv],{type:'text/csv'}),'creativebatch-mapping.csv');trackEvent('manifest-download');
   };
 
   function crcTable(){const table=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?0xedb88320^(c>>>1):c>>>1;table[n]=c>>>0;}return table}
@@ -271,7 +289,7 @@
   }
   $('zipBtn').onclick=async()=>{
     const b=$('zipBtn'),old=b.textContent;b.disabled=true;b.textContent='Building ZIP…';
-    try{downloadBlob(await makeZip(currentRows()),'creativebatch-renamed.zip')}catch(err){console.error(err);alert('Could not build the ZIP. Try a smaller batch.')}finally{b.textContent=old;render()}
+    try{downloadBlob(await makeZip(currentRows()),'creativebatch-renamed.zip');trackEvent('zip-download')}catch(err){console.error(err);alert('Could not build the ZIP. Try a smaller batch.')}finally{b.textContent=old;render()}
   };
   function downloadBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
   render();
