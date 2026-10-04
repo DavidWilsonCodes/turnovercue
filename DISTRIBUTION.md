@@ -1,4 +1,4 @@
-# TurnoverCue — Distribution Pack
+# TurnoverCue — Distribution & Market-Test Pack
 
 Status: MARKET-READY  
 Public URL: https://davidwilsoncodes.github.io/turnovercue/  
@@ -9,90 +9,141 @@ Paid promotion: none
 
 Self-managing short-term-rental hosts who manually translate booking calendars into cleaner instructions will use a free, private browser tool that turns .ics booking calendars into a cleaner-ready schedule.
 
-## Primary qualified channel: VRInsider
+## Measurement reality
 
-VRInsider is a vacation-rental industry directory that states it reaches 22,000+ vacation-rental professionals and offers a free starting listing.
+Cloudflare Web Analytics is installed.
 
-### Attribution URL
+It can measure visitors, page views, paths, referrers and performance, but as of October 2026 Cloudflare Web Analytics does **not** support:
+- UTM parameter reporting
+- custom conversion events
 
-https://davidwilsoncodes.github.io/turnovercue/?utm_source=vrinsider&utm_medium=directory&utm_campaign=launch
+Therefore:
+- Use the path `/turnovercue/` when reviewing traffic.
+- Use the **Referrer** dimension to identify traffic from directory/community placements.
+- Do not claim we can measure calendar-upload conversion from Cloudflare alone.
+- Meaningful usage still needs direct feedback, repeat traffic, explicit interest, or a later event-tracking layer.
 
-### Listing name
+Cloudflare docs:
+https://developers.cloudflare.com/web-analytics/faq/
 
+## First verified qualified channel: The Tool Directory
+
+Submission page:
+https://thetooldirectory.com/submit-a-tool/
+
+Why it qualifies:
+- standard listing is free
+- focused web utilities are allowed
+- every submission is reviewed
+- no payment is required for a standard listing
+- public profile can include audience, pricing, alternatives and use cases
+
+### Exact form copy
+
+**Tool or product name**  
 TurnoverCue
 
-### Category
+**Product website URL**  
+https://davidwilsoncodes.github.io/turnovercue/
 
-Technology / Short-Term Rental Operations / Cleaning & Turnover
-
-### One-line description
-
+**One-line description**  
 Free private browser tool that turns Airbnb, VRBO and other iCal booking calendars into cleaner-ready turnover schedules.
 
-### Short description
-
-TurnoverCue helps self-managing vacation-rental hosts turn booking calendars into cleaner instructions without adopting another property-management platform. Upload one or more .ics calendar files and it identifies checkout days, flags same-day turns, combines multiple properties, generates a cleaner-ready message, and exports CSV or printable schedules.
-
-The free version runs entirely in the browser: no account, no card, no server-side booking upload, and no access to host pricing or payouts.
-
-### What makes it different
-
-- Browser-only and privacy-first
-- No account or PMS connection required
-- Highlights same-day turnover risk
-- Multi-property upload
-- Cleaner message, CSV and print/PDF output
-- Free market-test release
-
-### Pricing
-
+**Pricing**  
 Free
 
-### Audience
+**Category**  
+Utilities  
+If Utilities is unavailable, use Productivity or the closest Business/Operations category.
 
-Self-managing Airbnb, VRBO and vacation-rental hosts; small STR portfolios; hosts working with independent cleaners.
+**Platforms**  
+Web
 
-## Secondary free directory: The Tool Directory
+**Who is it for?**  
+Self-managing Airbnb, VRBO and vacation-rental hosts; small STR operators who coordinate cleaners manually.
 
-Attribution URL:
-https://davidwilsoncodes.github.io/turnovercue/?utm_source=thetooldirectory&utm_medium=directory&utm_campaign=launch
+**What do people use it for?**  
+Turning iCal booking calendars into cleaning dates, flagging same-day turnovers, combining multiple properties, generating cleaner messages, and exporting turnover schedules.
 
-One-line description:
-Turn Airbnb and VRBO booking calendars into cleaner-ready turnover schedules privately in your browser.
+**Alternatives to**  
+Turno, Breezeway, manual spreadsheets, cleaner group messages
 
-Who is it for?
-Self-managing short-term-rental hosts and small vacation-rental operators.
+**Logo URL**  
+Leave blank for the first submission unless we later add a stable public logo asset.
 
-What do people use it for?
-Converting iCal booking calendars into cleaning dates, identifying same-day turns, combining multiple properties, generating cleaner messages, and exporting turnover schedules.
+**Screenshots**  
+Optional. Leave blank for the first submission unless the reviewer requires them.
 
-Alternatives to:
-Turno, Breezeway, manual spreadsheets and cleaner group messages.
+**Tell us what the tool does and what makes it useful**  
+TurnoverCue is a lightweight browser utility for self-managing short-term-rental hosts who do not need a full property-management platform just to coordinate cleaners. Upload one or more .ics booking calendar files and TurnoverCue identifies checkout days, highlights same-day turnover risk, combines multiple properties into one schedule, generates a cleaner-ready message, and exports CSV or printable schedules.
 
-Long description:
-TurnoverCue is a lightweight browser utility for hosts who do not need a full property-management platform just to coordinate cleaners. It processes .ics booking calendars locally, identifies turnover dates and same-day risk, and creates cleaner-ready outputs. No login and no booking data upload.
+The current free version runs locally in the browser. It does not require an account, does not connect to the host's Airbnb or VRBO account, does not require access to prices or payouts, and does not upload the booking calendar to a TurnoverCue server.
+
+It is designed for the awkward gap between a host's booking calendar and the cleaner who only needs to know where and when a turnover is required.
+
+**Paid featured placement checkbox**  
+Leave unchecked.
+
+**Your email**  
+Human owner step: enter the email David wants associated with the submission.
+
+### Submission boundary
+
+Submitting the form publicly under the owner's identity is a human boundary. No payment or featured placement should be accepted during this experiment.
+
+## Secondary channels
+
+Only use channels where product/tool promotion is explicitly allowed.
+
+Avoid unsolicited promotional posts in host communities that prohibit self-promotion. Useful discussion and support can be separate from promotion; do not disguise advertising as advice.
 
 ## Signal thresholds
 
-NO QUALIFIED SIGNAL:
-Traffic arrives but almost nobody tries the tool.
+### Weak signal
+- 5+ independent people report successfully using the tool, or
+- useful unsolicited host feedback
 
-WEAK SIGNAL:
-At least 5 independent successful uses or meaningful host feedback.
+### Promising signal
+- 10 repeat users, or
+- 5+ independent requests for automatic calendar sync / notifications / cleaner assignment
 
-PROMISING SIGNAL:
-10 repeat users, multiple referrals/shares, or at least 5 requests for automatic sync/notifications.
+### Strong signal
+- an independent host explicitly asks to pay
+- an independent host offers to pay
+- a host accepts a paid pilot
 
-STRONG SIGNAL:
-An independent host explicitly asks to pay, offers to pay, or accepts a paid pilot.
+## Traffic checkpoint
 
-## Stop rule
+At 100 qualified visitors, evaluate:
+- Were people from the intended STR audience?
+- Did we receive any direct evidence of successful use?
+- Did anyone return or ask for more automation?
+- Did anyone ask to pay?
 
-After 100 qualified visitors:
-- If fewer than 5 appear to use the tool and there is no meaningful feedback, diagnose positioning once.
-- Run one second comparable exposure window.
-- If still no meaningful signal, freeze development and preserve the live asset cheaply.
+If traffic arrives but there is no usage evidence, make one positioning/onboarding correction and run a second comparable exposure window.
+
+If the second window is also dead, stop development and preserve the asset cheaply.
 
 ## No-spend rule
 
-Do not purchase directory placement, sponsorship, advertising or editorial review without explicit owner approval.
+Do not purchase:
+- directory placement
+- sponsored posts
+- ads
+- editorial reviews
+- paid backlinks
+
+without explicit owner approval.
+
+## Current build status
+
+- Product works
+- Public GitHub Pages URL works
+- Cloudflare Web Analytics installed
+- Audience positioning explicit above the fold
+- How-it-works section live
+- FAQ live
+- privacy explanation live
+- search/social metadata live
+- sitemap and robots.txt live
+- product development frozen unless real user evidence justifies changes
