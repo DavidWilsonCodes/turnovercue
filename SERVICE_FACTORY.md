@@ -162,3 +162,342 @@ Stage 3:
 Only scale volume if average human handling time is under ~15 minutes/order.
 
 The objective is **net revenue per owner minute**, not order count.
+
+
+
+# Marketplace universe
+
+This is the practical platform map for the Service Factory. Do **not** open every account at once. Start with the highest-fit channels, copy the same standardized service engines across them, and add more only when the first profiles/listings are live.
+
+## Tier 1 — launch first
+
+### Upwork
+Best for:
+- fresh posted jobs
+- Project Catalog fixed-scope services
+- research, spreadsheet, data, admin, automation, content operations
+
+Current notes:
+- freelancer fee varies by contract
+- Project Catalog provides predefined service listings
+- strongest combination of outbound proposals + inbound catalog discovery
+
+Priority: **VERY HIGH**
+
+### Fiverr
+Best for:
+- fixed-scope productized services
+- search-driven inbound orders
+- design, research, spreadsheets, document conversion, content operations
+
+Current notes:
+- new freelancers can run up to 4 Gigs
+- Level 1/2 up to 10; Top Rated up to 30
+- seller receives 80% of order value
+
+Priority: **VERY HIGH**
+
+### Freelancer.com
+Best for:
+- large global pool of posted projects
+- fixed-price and hourly work
+- data entry, Excel, research, automation, design, coding
+
+Current notes:
+- heavy competition
+- useful mainly for targeted bidding on narrow jobs, not broad generic offers
+
+Priority: **HIGH**
+
+### PeoplePerHour
+Best for:
+- UK/EU-heavy small-business demand
+- fixed Offers plus project proposals
+- research, admin, design, marketing, writing
+
+Current notes:
+- no sign-up fee
+- freelancer commission is highest on the first low-value billing with each buyer, then falls as lifetime buyer billing increases
+
+Priority: **HIGH**
+
+### Contra
+Best for:
+- polished fixed projects
+- payment links
+- one-off invoices
+- digital products
+- creative/strategy/tech services
+
+Current notes:
+- useful as both a talent marketplace and our own lightweight sales/payment surface
+- supports guest checkout payment links
+- digital products are supported
+- especially attractive when we eventually want direct clients without building our own checkout
+
+Priority: **HIGH**
+
+### Airtasker
+Best for:
+- Australian buyers
+- fast-turn local and remote digital tasks
+- spreadsheet help, admin, research, design, web/content tasks
+
+Current notes:
+- tasker fee in Australia currently ranges by tier
+- high local recognition
+- good for one-off quick jobs and building early reviews
+
+Priority: **HIGH in Australia**
+
+---
+
+## Tier 2 — worthwhile second-wave channels
+
+### Guru
+Best for:
+- business/admin/data/programming/writing
+- recurring client relationships
+- quote-based jobs
+
+Priority: MEDIUM-HIGH
+
+### Workana
+Best for:
+- international remote projects, especially Latin America
+- fixed-price and hourly projects
+- tech, admin, design, marketing
+
+Current notes:
+- freelancer commission falls as lifetime billing with a client grows
+
+Priority: MEDIUM-HIGH
+
+### Kwork
+Best for:
+- Fiverr-like fixed service listings
+- SEO, marketing, design, writing, data/admin
+
+Current notes:
+- seller fee starts high and falls with cumulative revenue from the same buyer
+
+Priority: MEDIUM
+
+### Legiit
+Best for:
+- SEO, marketing, web, content, business services
+- fixed service listings
+
+Current notes:
+- free marketplace account available
+- marketplace fee applies per sale
+
+Priority: MEDIUM
+
+### Bark
+Best for:
+- lead generation for services
+- web design, marketing, bookkeeping/admin, consulting, local services
+
+Current notes:
+- not commission-based in the normal marketplace sense; professionals buy credits to contact leads
+- therefore test cautiously because cash can be spent before winning work
+
+Priority: MEDIUM — only after free/low-cost channels
+
+---
+
+## Tier 3 — specialist/high-value networks
+
+These are not ideal for US$15 microservices, but they can become important once the profile has proof and the service factory develops higher-value offers.
+
+### Braintrust
+Best for:
+- remote professional contract roles
+- product, engineering, design, AI/data
+- AI gig work
+
+Current notes:
+- currently markets zero platform fees to talent
+- more role/network oriented than fixed microservices
+
+Priority: MEDIUM-LATER
+
+### Toptal
+Best for:
+- higher-value development, design, product/project management, consulting
+- longer engagements
+
+Current notes:
+- heavily vetted
+- poor fit for low-price microjobs
+- potentially valuable once we have a strong specialist profile
+
+Priority: LATER
+
+### Arc
+Best for:
+- developer/technical freelance and contract work
+- higher hourly rates
+
+Priority: LATER / TECH-SPECIFIC
+
+### Catalant
+Best for:
+- strategy, operations, market research, finance, transformation, AI consulting
+- enterprise and private-equity clients
+
+Current notes:
+- verified consultant model
+- projects are generally weeks/months rather than tiny gigs
+
+Priority: LATER / HIGH-VALUE CONSULTING
+
+### Malt
+Best for:
+- EU/UK professional freelance consulting
+- technology, design, marketing, strategy
+
+Priority: LATER unless Australian onboarding/market access proves useful
+
+### Mayple
+Best for:
+- experienced performance marketers
+- e-commerce marketing retainers
+
+Current notes:
+- strongly vetted and requires real performance track record
+
+Priority: LOW FOR NOW
+
+### Codeable
+Best for:
+- WordPress experts
+
+Current notes:
+- strong rates and vetted network
+- applications are currently closed / waitlist only
+
+Priority: WATCHLIST
+
+### Kolabtree
+Best for:
+- scientific research
+- statistics/data science
+- academic/technical expert work
+
+Priority: SPECIALIST
+
+### Clarity.fm
+Best for:
+- paid expert calls
+- business, startup, marketing or domain expertise
+
+Priority: SPECIALIST / FUTURE ADVISORY
+
+---
+
+## Creative/design-specific channels
+
+### 99designs
+Best for:
+- logos, branding, web/landing page design and design contests
+
+Current notes:
+- curated designer network
+- platform fees vary by designer level
+- less suitable for spreadsheet/research services
+
+Priority: ONLY FOR DESIGN OFFERS
+
+### DesignCrowd
+Best for:
+- design contests and direct design work
+
+Current notes:
+- free designer registration
+- platform retains commission on designer payments
+
+Priority: ONLY FOR DESIGN OFFERS
+
+---
+
+## AI/data-task income channels — separate lane
+
+These are not our main “productized service catalog” model, but they belong in the broader 50-money-method universe because they can monetize spare capacity and specialist knowledge.
+
+Candidates to evaluate separately:
+- Braintrust AI Gig Work
+- Outlier
+- DataAnnotation
+- Clickworker
+- CrowdGen / Appen
+- OneForma
+- TELUS Digital AI/community work
+- Prolific research participation
+- UserTesting / User Interviews / Respondent for paid research/testing
+
+These should be judged by **effective hourly return**, availability in Australia, payout reliability and whether the work improves our reusable skills/data.
+
+---
+
+## Direct discovery surfaces — no built-in marketplace checkout
+
+These are useful for client acquisition, but require a separate payment/invoicing channel:
+
+- LinkedIn Services / posts
+- Facebook small-business and niche groups where promotion is allowed
+- relevant Reddit hiring/subreddit threads
+- Discord/Slack professional communities
+- local business directories
+- industry forums
+- cold email to businesses with a concrete micro-offer
+- direct outreach from public job/problem posts
+- personal website / SEO pages
+- GitHub profile/repositories for technical services
+
+Contra invoices/payment links can become the lightweight payment rail for direct clients if we do not want Stripe.
+
+---
+
+## Platforms deliberately deprioritized / retired
+
+### Oneflare
+Closed on 30 June 2026 and now redirects users toward Airtasker.
+
+Do not spend setup time there.
+
+---
+
+## Rollout sequence
+
+### Wave 1
+1. Upwork
+2. Fiverr
+3. Airtasker
+4. Contra
+
+### Wave 2
+5. Freelancer.com
+6. PeoplePerHour
+7. Guru
+8. Workana
+9. Kwork
+10. Legiit
+
+### Wave 3
+11. Bark
+12. Braintrust
+13. specialist networks relevant to whatever service has proven demand
+
+Do not build separate fulfillment processes for each platform. One service engine should be syndicated across multiple marketplaces with platform-specific titles, images and pricing.
+
+## Core rule
+
+A platform only earns ongoing attention if it produces one of:
+- impressions from qualified buyers;
+- messages;
+- orders;
+- paid contracts.
+
+No signal after a defined test window = stop spending owner time there.
