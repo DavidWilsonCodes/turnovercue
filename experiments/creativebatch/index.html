@@ -193,7 +193,7 @@
     const hasFiles=state.files.length>0;
     $('workspace').classList.toggle('hidden',!hasFiles);
     $('clearBtn').classList.toggle('hidden',!hasFiles&&!state.csvRows.length);
-    $('fileSummary').textContent=hasFiles?(state.demo?state.files.length+' demo export filenames loaded.':state.files.length+' export files loaded.'):'No assets loaded yet.';
+    $('fileSummary').textContent=hasFiles?(state.demo?state.files.length+' demo files loaded · ZIP test is active.':state.files.length+' export files loaded.'):'No assets loaded yet.';
     $('csvMeta').classList.toggle('hidden',!state.csvRows.length);
     if(state.csvRows.length)$('csvMeta').innerHTML='<strong>'+state.csvRows.length+' CSV data rows</strong> · headers: '+state.headers.map(h=>'<code>'+escapeHtml(h)+'</code>').join(' · ');
     renderTokens();
@@ -218,7 +218,7 @@
       $('status').innerHTML='<div class="notice"><strong>Mapping is internally consistent.</strong> Row count matches the asset count and every generated filename is unique. Still visually inspect the preview before export.</div>';
       if(!state.demo) trackEvent('mapping-ready');
     }
-    const blocked=state.demo||mismatch||dupes.size>0;
+    const blocked=mismatch||dupes.size>0;
     $('zipBtn').disabled=blocked;$('csvBtn').disabled=!state.csvRows.length||dupes.size>0;$('copyBtn').disabled=!state.csvRows.length||dupes.size>0;
   }
 
@@ -250,7 +250,7 @@
 
   $('demoBtn').onclick=()=>{
     const names=['Frame 1.png','Frame 2.png','Frame 3.png','Frame 4.png','Frame 5.png','Frame 6.png'];
-    state.files=names.map(name=>({name,size:0,type:'image/png'}));
+    state.files=names.map(name=>new File(['CreativeBatch demo file\n'],name,{type:'application/octet-stream'}));
     state.headers=['id','language','page_slug'];
     state.csvRows=[
       {id:'hero-001',language:'en_GB',page_slug:'pricing'},
@@ -267,7 +267,7 @@
   $('csvBtn').onclick=()=>{
     const rows=currentRows();const headers=['original_filename','renamed_filename','csv_row',...state.headers];
     const data=[headers,...rows.map(r=>[r.original,r.renamed,r.csv?r.rowIndex+2:'',...state.headers.map(h=>r.csv?.[h]??'')])];
-    const csv=data.map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');downloadBlob(new Blob([csv],{type:'text/csv'}),'creativebatch-mapping.csv');trackEvent('manifest-download');
+    const csv=data.map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');downloadBlob(new Blob([csv],{type:'text/csv'}),'creativebatch-mapping.csv');if(!state.demo) trackEvent('manifest-download');
   };
 
   function crcTable(){const table=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?0xedb88320^(c>>>1):c>>>1;table[n]=c>>>0;}return table}
@@ -289,7 +289,7 @@
   }
   $('zipBtn').onclick=async()=>{
     const b=$('zipBtn'),old=b.textContent;b.disabled=true;b.textContent='Building ZIP…';
-    try{downloadBlob(await makeZip(currentRows()),'creativebatch-renamed.zip');trackEvent('zip-download')}catch(err){console.error(err);alert('Could not build the ZIP. Try a smaller batch.')}finally{b.textContent=old;render()}
+    try{downloadBlob(await makeZip(currentRows()),'creativebatch-renamed.zip');if(!state.demo) trackEvent('zip-download')}catch(err){console.error(err);alert('Could not build the ZIP. Try a smaller batch.')}finally{b.textContent=old;render()}
   };
   function downloadBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
   render();
