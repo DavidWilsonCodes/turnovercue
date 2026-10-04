@@ -1,5 +1,36 @@
 # One-Person Venture Studio — Experiment Ledger
 
+## Money Method Candidate #1 — STR Turnover Proof System on Etsy
+
+**Status:** MARKETPLACE-READY — checkout not yet live.
+
+**Revenue mechanism:** one-time digital download via Etsy.
+
+**Asset:** existing 11-sheet Excel operations workbook with proof standards, turnover run template, issues log, restock tracker, cleaner agreement and dashboard.
+
+**Current marketplace evidence:** active 2026 Etsy listings sell adjacent vacation-rental turnover/cleaning workbooks and bundles in roughly the A$10–A$20-equivalent range. Competition is real, including recent photo-proof/restock products, so this is a low-cost market test rather than a moat claim.
+
+**Differentiation:** proof-before-handoff workflow: required proof visibility, READY/HOLD state, consistent proof standard, issues and restock control.
+
+**Test price:** A$14.95.
+
+**Distribution:** Etsy search/category traffic. No ads initially.
+
+**Cash required to test:** US$0.20 listing fee plus any one-time shop setup fee Etsy displays during onboarding. No spend is authorised until David sees and approves the setup fee.
+
+**Prepared assets:**
+- STR_Turnover_Proof_System_Product.zip
+- STR_Turnover_Proof_System_Seller_Kit_2026-10-05.zip
+
+**Counts toward 50?** Not yet. It counts when the Etsy listing is live with a real checkout path.
+
+**Success threshold:** 1 independent full-price sale within first 50 relevant visits is promising; 3 within 100 relevant visits is strong.
+
+**Stop:** after 100 relevant visits with no sales and no meaningful favourite/cart behaviour, stop development and preserve the asset.
+
+---
+
+
 ## North-star goal
 
 Build **50 distinct methods/assets capable of making money**.
@@ -173,7 +204,9 @@ Distribution rule: identify the first 20–100 qualified eyeballs **before** bui
 
 ## Portfolio totals
 
-Experiments started: 2  
+Experiments started: 2
+Money-method candidates prepared: 1
+Money methods with live checkout: 0  
 Public market-ready assets: 1
 Live internal/lab prototypes: 1  
 Qualified-market exposures completed: 0  
