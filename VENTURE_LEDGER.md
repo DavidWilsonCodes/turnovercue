@@ -1,6 +1,30 @@
 # One-Person Venture Studio — Experiment Ledger
 
-Goal: build and expose a large portfolio of cheap owned assets, then allocate attention based on real market signal rather than attachment or forecasts.
+## North-star goal
+
+Build **50 distinct methods/assets capable of making money**.
+
+A live URL does **not** count. A polished prototype does **not** count. A project only enters the 50-method candidate pool when it has:
+1. a credible monetisation mechanism, and
+2. a real route to qualified users.
+
+Validation ladder for the 50-method goal:
+- CANDIDATE — credible money mechanism + reachable qualified distribution
+- VALIDATED — willingness-to-pay or transaction evidence
+- REVENUE — money received
+- REPEATABLE — repeatable acquisition + monetisation
+
+Current count:
+- CANDIDATES: 0
+- VALIDATED: 0
+- REVENUE: 0
+- REPEATABLE: 0
+
+Current conclusion: the studio has built useful assets and learned valuable lessons, but has **zero money methods that yet deserve to count toward the 50-method goal**. That is the problem to fix now.
+
+Research freshness rule: prefer pain/demand signals from the **last 7–60 days** and verify competition before building.
+
+Distribution rule: identify the first 20–100 qualified eyeballs **before** build. No credible distribution path = no build.
 
 ## Studio rules
 
@@ -33,6 +57,8 @@ Goal: build and expose a large portfolio of cheap owned assets, then allocate at
 ---
 
 ## Run #1 — TurnoverCue
+
+**50-method status:** NOT COUNTED YET — product exists, but qualified distribution and willingness-to-pay evidence are not yet sufficient.
 
 **Status:** MARKET-READY + INSTRUMENTED — awaiting first qualified external distribution submission
 
@@ -88,7 +114,9 @@ Goal: build and expose a large portfolio of cheap owned assets, then allocate at
 
 ## Run #2 — CreativeBatch
 
-**Status:** LIVE LAB PROTOTYPE — publicly reachable for testing, not yet distributed to the qualified market.\n\n**Live lab:** https://davidwilsoncodes.github.io/turnovercue/lab/creativebatch/
+**50-method status:** NOT COUNTED — the pain was real, but fresh competitive research found adjacent/direct products already moving into the same wedge. Preserve as a learning asset; do not allocate meaningful distribution capital without a differentiated pivot.
+
+**Status:** FROZEN / LEARNING ASSET — technically functional and publicly reachable, but current wedge is too crowded to justify priority distribution.\n\n**Live lab:** https://davidwilsoncodes.github.io/turnovercue/lab/creativebatch/
 
 **Initial idea:** generic batch renamer for ad creatives.
 
