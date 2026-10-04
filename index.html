@@ -99,6 +99,7 @@ a{color:var(--brand2)}.wrap{max-width:1120px;margin:auto;padding:0 20px}.nav{dis
         <button class="btn primary" id="copyBtn">Copy cleaner message</button>
         <button class="btn secondary" id="csvBtn">Export CSV</button>
         <button class="btn secondary" id="printBtn">Print / save PDF</button>
+        <button class="btn secondary" id="shareBtn">Share TurnoverCue</button>
         <button class="btn ghost" id="clearBtn">Clear data</button>
       </div>
       <div class="message" id="messageBox"></div>
@@ -277,6 +278,14 @@ a{color:var(--brand2)}.wrap{max-width:1120px;margin:auto;padding:0 20px}.nav{dis
   $('fromDate').addEventListener('change',render);$('toDate').addEventListener('change',render);$('resetDates').onclick=()=>{defaultDates();render()};
   $('clearBtn').onclick=()=>{state.events=[];state.files=[];input.value='';$('fileList').innerHTML='';render()};
   $('printBtn').onclick=()=>{trackEvent('print-schedule');window.print()};
+  $('shareBtn').onclick=async()=>{
+    const shareData={title:'TurnoverCue',text:'Free browser tool for turning Airbnb/VRBO booking calendars into cleaner-ready turnover schedules.',url:'https://davidwilsoncodes.github.io/turnovercue/'};
+    try{
+      if(navigator.share){await navigator.share(shareData)}
+      else{await navigator.clipboard.writeText(shareData.url);const b=$('shareBtn'),old=b.textContent;b.textContent='Link copied ✓';setTimeout(()=>b.textContent=old,1200)}
+      trackEvent('share');
+    }catch(err){if(err?.name!=='AbortError')console.error(err)}
+  };
   $('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText($('messageBox').textContent);trackEvent('copy-cleaner-message');const b=$('copyBtn'),old=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=old,1200)}catch{alert('Copy failed. Select the message and copy it manually.')}};
   $('proInterestBtn').onclick=()=>{
     trackEvent('pro-interest');
