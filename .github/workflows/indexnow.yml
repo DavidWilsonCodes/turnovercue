@@ -1,0 +1,40 @@
+name: Notify IndexNow
+
+on:
+  workflow_run:
+    workflows: ["Deploy TurnoverCue to GitHub Pages"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify participating search engines
+        shell: bash
+        run: |
+          KEY="46b6a47d4f832c5676cd688e16212b2f"
+          KEY_LOCATION="https://davidwilsoncodes.github.io/turnovercue/${KEY}.txt"
+          URLS=(
+            "https://davidwilsoncodes.github.io/turnovercue/"
+            "https://davidwilsoncodes.github.io/turnovercue/airbnb-cleaner-schedule/"
+            "https://davidwilsoncodes.github.io/turnovercue/airbnb-ical-cleaning-schedule/"
+            "https://davidwilsoncodes.github.io/turnovercue/vrbo-cleaner-schedule/"
+            "https://davidwilsoncodes.github.io/turnovercue/creativebatch/"
+            "https://davidwilsoncodes.github.io/turnovercue/creativebatch/figma-buzz-csv-filenames/"
+          )
+
+          for URL in "${URLS[@]}"; do
+            echo "Submitting $URL"
+            HTTP_CODE=$(curl -sS -o /tmp/indexnow-response.txt -w "%{http_code}" \
+              --get "https://api.indexnow.org/indexnow" \
+              --data-urlencode "url=$URL" \
+              --data-urlencode "key=$KEY" \
+              --data-urlencode "keyLocation=$KEY_LOCATION" || true)
+            echo "IndexNow HTTP $HTTP_CODE"
+            cat /tmp/indexnow-response.txt || true
+            echo
+          done
