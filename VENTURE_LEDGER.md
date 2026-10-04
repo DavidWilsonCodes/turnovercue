@@ -1,5 +1,25 @@
 # One-Person Venture Studio — Experiment Ledger
 
+## Money Method Candidate #2 — Productized Microservices / Upwork Service Factory
+
+**Status:** READY FOR MARKETPLACE SETUP — not yet live.
+
+**Revenue mechanism:** fixed-price Project Catalog orders + targeted proposals to fresh jobs.
+
+**Current evidence:** Upwork currently allows up to 20 active Project Catalog projects. Fresh October 2026 jobs show real demand for competitor research, PDF-to-Excel extraction, spreadsheet cleanup, social asset repurposing and opportunity research. One live opportunity-research role has fewer than 5 proposals and closely matches the Venture Studio workflow.
+
+**Prepared assets:**
+- SERVICE_FACTORY.md — first 12 standardized service products
+- UPWORK_LIVE_LEAD_001.md — tailored proposal/application test for a current ongoing opportunity-research role
+
+**Economics target:** US$15–60 entry products with 5–20 minutes of owner QA after a standardized intake. Avoid racing to US$5 unless the task is essentially automatic.
+
+**Counts toward 50?** Not yet. It counts when at least one service is live and purchasable or a paid contract is won.
+
+**Kill/iterate rule:** any listing that repeatedly consumes >30 owner minutes or attracts only high-touch custom work gets repriced, narrowed or removed.
+
+---
+
 ## Money Method Candidate #1 — STR Turnover Proof System on Etsy
 
 **Status:** MARKETPLACE-READY — checkout not yet live.
@@ -205,7 +225,7 @@ Distribution rule: identify the first 20–100 qualified eyeballs **before** bui
 ## Portfolio totals
 
 Experiments started: 2
-Money-method candidates prepared: 1
+Money-method candidates prepared: 2
 Money methods with live checkout: 0  
 Public market-ready assets: 1
 Live internal/lab prototypes: 1  
