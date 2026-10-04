@@ -34,7 +34,7 @@ Goal: build and expose a large portfolio of cheap owned assets, then allocate at
 
 ## Run #1 — TurnoverCue
 
-**Status:** MARKET-READY — awaiting first qualified external distribution submission
+**Status:** MARKET-READY + INSTRUMENTED — awaiting first qualified external distribution submission
 
 **Asset:** free browser utility for short-term-rental hosts.
 
@@ -88,7 +88,7 @@ Goal: build and expose a large portfolio of cheap owned assets, then allocate at
 
 ## Run #2 — CreativeBatch
 
-**Status:** FUNCTIONAL PROTOTYPE — staged, not publicly deployed.
+**Status:** LIVE LAB PROTOTYPE — publicly reachable for testing, not yet distributed to the qualified market.
 
 **Initial idea:** generic batch renamer for ad creatives.
 
@@ -139,14 +139,15 @@ Goal: build and expose a large portfolio of cheap owned assets, then allocate at
 
 **Stop/pivot:** if real exports cannot be matched reliably, Figma closes the gap, or qualified traffic shows no meaningful use after one correction.
 
-**Current next action:** deploy under a reusable venture-lab host and test with real Figma Buzz output.
+**Current next action:** test the live lab with a real Figma Buzz export + source CSV. If row/order mapping survives, move it to a neutral venture-lab host before qualified distribution.
 
 ---
 
 ## Portfolio totals
 
 Experiments started: 2  
-Public market-ready assets: 1  
+Public market-ready assets: 1
+Live internal/lab prototypes: 1  
 Qualified-market exposures completed: 0  
 Revenue signals: 0  
 Cash spent: A$0  
