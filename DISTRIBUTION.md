@@ -18,10 +18,24 @@ It can measure visitors, page views, paths, referrers and performance, but as of
 - custom conversion events
 
 Therefore:
-- Use the path `/turnovercue/` when reviewing traffic.
+- Use the path `/turnovercue/` when reviewing top-level traffic.
 - Use the **Referrer** dimension to identify traffic from directory/community placements.
-- Do not claim we can measure calendar-upload conversion from Cloudflare alone.
-- Meaningful usage still needs direct feedback, repeat traffic, explicit interest, or a later event-tracking layer.
+- Do not rely on UTM query strings in Cloudflare.
+
+### Anonymous pageview-based conversion markers
+
+Because Cloudflare Web Analytics does not support custom events, TurnoverCue now creates a hidden, noindex internal pageview the first time each meaningful action happens in a browser session.
+
+Filter Cloudflare by these paths:
+
+- `/turnovercue/events/calendar-loaded.html` = at least one real uploaded calendar produced usable reservation events
+- `/turnovercue/events/copy-cleaner-message.html` = cleaner message copied
+- `/turnovercue/events/export-csv.html` = CSV export triggered
+- `/turnovercue/events/print-schedule.html` = print/save-PDF action triggered
+
+These markers send **no booking details, filenames, property names or calendar content**. They are coarse anonymous action counters implemented as ordinary pageviews because custom events are unavailable.
+
+This method is intentionally experimental until it is confirmed in the Cloudflare dashboard. Direct feedback and repeat traffic remain stronger commercial evidence than a button click.
 
 Cloudflare docs:
 https://developers.cloudflare.com/web-analytics/faq/
