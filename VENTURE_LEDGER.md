@@ -88,7 +88,7 @@ Goal: build and expose a large portfolio of cheap owned assets, then allocate at
 
 ## Run #2 — CreativeBatch
 
-**Status:** LIVE LAB PROTOTYPE — publicly reachable for testing, not yet distributed to the qualified market.
+**Status:** LIVE LAB PROTOTYPE — publicly reachable for testing, not yet distributed to the qualified market.\n\n**Live lab:** https://davidwilsoncodes.github.io/turnovercue/lab/creativebatch/
 
 **Initial idea:** generic batch renamer for ad creatives.
 
@@ -139,7 +139,7 @@ Goal: build and expose a large portfolio of cheap owned assets, then allocate at
 
 **Stop/pivot:** if real exports cannot be matched reliably, Figma closes the gap, or qualified traffic shows no meaningful use after one correction.
 
-**Current next action:** test the live lab with a real Figma Buzz export + source CSV. If row/order mapping survives, move it to a neutral venture-lab host before qualified distribution.
+**Measurement markers:**\n- /turnovercue/lab/creativebatch/events/csv-loaded.html\n- /turnovercue/lab/creativebatch/events/mapping-ready.html\n- /turnovercue/lab/creativebatch/events/zip-download.html\n- /turnovercue/lab/creativebatch/events/manifest-download.html\n\n**Current next action:** run the built-in demo end-to-end, including the real ZIP export. Then test the live lab with a real Figma Buzz export + source CSV. If row/order mapping survives, move it to a neutral venture-lab host before qualified distribution.
 
 ---
 
