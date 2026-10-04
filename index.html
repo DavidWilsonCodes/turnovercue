@@ -154,8 +154,25 @@ a{color:var(--brand2)}.wrap{max-width:1120px;margin:auto;padding:0 20px}.nav{dis
   </section>
 
   <section class="premium">
-    <div><div class="pill" style="display:inline-block;background:#dff6eb">IF PEOPLE WANT IT</div><h2 style="font-size:32px;margin:12px 0 8px">If TurnoverCue saves you time, the next step is automation.</h2><p>The free version solves the calendar-to-cleaner handoff manually. If enough hosts use it repeatedly, TurnoverCue Pro would remove even that step.</p><ul><li>Automatic read-only calendar sync</li><li>Booking and cancellation alerts</li><li>Scheduled cleaner notifications</li><li>Cleaner assignments across properties</li><li>Completion and proof tracking</li></ul></div>
-    <div class="box"><strong>Possible future Pro plan</strong><div style="font-size:36px;font-weight:850;margin:7px 0">A$5–A$10<span style="font-size:16px;font-weight:500"> / month</span></div><div style="color:#cbd5d0">Only if real host usage proves the automation is worth building.</div></div>
+    <div>
+      <div class="pill" style="display:inline-block;background:#dff6eb">EARLY ACCESS</div>
+      <h2 style="font-size:32px;margin:12px 0 8px">Want TurnoverCue to run automatically?</h2>
+      <p>The free tool turns booking calendars into cleaner-ready schedules on demand. A Pro version could remove the manual upload step and keep the cleaner handoff updated for you.</p>
+      <ul>
+        <li>Automatic read-only calendar sync</li>
+        <li>Booking and cancellation alerts</li>
+        <li>Scheduled cleaner notifications</li>
+        <li>Cleaner assignments across properties</li>
+        <li>Completion and proof tracking</li>
+      </ul>
+    </div>
+    <div class="box">
+      <strong>Interested in TurnoverCue Pro?</strong>
+      <div style="font-size:24px;font-weight:850;margin:10px 0 8px">Tell us you’d use it.</div>
+      <div style="color:#cbd5d0;margin-bottom:14px">No payment, no commitment. We’re measuring real host interest before building the automated version.</div>
+      <button class="btn primary" id="proInterestBtn" type="button">I’d use the Pro version</button>
+      <div id="proInterestThanks" class="small hidden" style="color:#cbd5d0;margin-top:10px">Thanks — interest recorded.</div>
+    </div>
   </section>
 
   <footer class="footer"><strong>TurnoverCue</strong> is an independent utility and is not affiliated with Airbnb, VRBO or other booking platforms. Calendar timing depends on the source file. Always verify critical same-day turnovers.<br><span class="footer-note">Free market-test release · Built to learn from real hosts</span></footer>
@@ -255,6 +272,12 @@ a{color:var(--brand2)}.wrap{max-width:1120px;margin:auto;padding:0 20px}.nav{dis
   $('clearBtn').onclick=()=>{state.events=[];state.files=[];input.value='';$('fileList').innerHTML='';render()};
   $('printBtn').onclick=()=>{trackEvent('print-schedule');window.print()};
   $('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText($('messageBox').textContent);trackEvent('copy-cleaner-message');const b=$('copyBtn'),old=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=old,1200)}catch{alert('Copy failed. Select the message and copy it manually.')}};
+  $('proInterestBtn').onclick=()=>{
+    trackEvent('pro-interest');
+    $('proInterestBtn').disabled=true;
+    $('proInterestBtn').textContent='Interest recorded ✓';
+    $('proInterestThanks').classList.remove('hidden');
+  };
   $('csvBtn').onclick=()=>{const rows=filtered();const data=[['clean_date','property','checkout','next_checkin','turn_window_days','priority'],...rows.map(t=>[ymd(t.clean),t.property,ymd(t.checkout),t.next?ymd(t.next):'',t.gap??'',priority(t)[0]])];const csv=data.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='turnovercue-cleaner-schedule.csv';a.click();URL.revokeObjectURL(a.href);trackEvent('export-csv')};
   $('demoBtn').onclick=()=>{
     state.events=[];state.files=[];
