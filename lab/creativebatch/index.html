@@ -99,8 +99,25 @@
   <section class="privacy"><div class="icon">🔒</div><div><span class="eyebrow">PRIVATE BY DESIGN</span><h2>Your CSV and creative files stay on your device</h2><p>CreativeBatch parses the spreadsheet locally, reads the export files locally, creates renamed copies locally, and builds the ZIP locally. Nothing is uploaded to a CreativeBatch server.</p></div></section>
 
   <section class="premium">
-    <div><div class="pill" style="display:inline-block;background:#ece8ff">ONLY IF USAGE EARNS IT</div><h2 style="font-size:32px;margin:12px 0 8px">The paid version belongs inside Figma, not after export.</h2><p>If this workaround gets repeat use, the stronger product is a Figma/Buzz workflow that uses selected CSV fields to name frames and exported assets before they ever hit Downloads.</p><ul><li>Select one or more CSV fields as the filename rule</li><li>Saved mappings per template or client</li><li>Bulk frame naming before export</li><li>Separate PNG/PDF naming and export rules</li><li>Team naming standards and QA checks</li></ul></div>
-    <div class="box"><strong>Possible future Pro</strong><div style="font-size:35px;font-weight:900;margin:7px 0">A$5–A$15<span style="font-size:16px;font-weight:500"> / month</span></div><div style="color:#d7d2ef">Only after repeat use or explicit willingness to pay.</div></div>
+    <div>
+      <div class="pill" style="display:inline-block;background:#ece8ff">EARLY ACCESS</div>
+      <h2 style="font-size:32px;margin:12px 0 8px">Want this workflow inside Figma?</h2>
+      <p>The browser tool fixes the export handoff. A Pro version could move the same logic upstream so your CSV fields name frames and exported assets automatically before they ever hit Downloads.</p>
+      <ul>
+        <li>Choose CSV fields as the filename rule</li>
+        <li>Save mappings per template or client</li>
+        <li>Name frames automatically before export</li>
+        <li>Separate PNG/PDF naming and export rules</li>
+        <li>Team naming standards and QA checks</li>
+      </ul>
+    </div>
+    <div class="box">
+      <strong>Interested in CreativeBatch Pro?</strong>
+      <div style="font-size:24px;font-weight:850;margin:10px 0 8px">Tell us you’d use it.</div>
+      <div style="color:#d7d2ef;margin-bottom:14px">No payment, no commitment. We’re measuring real interest before building the Figma version.</div>
+      <button class="btn primary" id="interestBtn" type="button">I’d use the Pro version</button>
+      <div id="interestThanks" class="small hidden" style="color:#d7d2ef;margin-top:10px">Thanks — interest recorded.</div>
+    </div>
   </section>
 
   <footer class="footer"><strong>CreativeBatch</strong> is an independent market-test prototype and is not affiliated with Figma. Always verify the mapping preview before using exported files in production.</footer>
@@ -264,6 +281,12 @@
   };
 
   $('copyBtn').onclick=async()=>{const text=currentRows().map(r=>r.renamed).join('\n');try{await navigator.clipboard.writeText(text);const b=$('copyBtn'),old=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=old,1100)}catch{alert('Copy failed.')}};
+  $('interestBtn').onclick=()=>{
+    trackEvent('pro-interest');
+    $('interestBtn').disabled=true;
+    $('interestBtn').textContent='Interest recorded ✓';
+    $('interestThanks').classList.remove('hidden');
+  };
   $('csvBtn').onclick=()=>{
     const rows=currentRows();const headers=['original_filename','renamed_filename','csv_row',...state.headers];
     const data=[headers,...rows.map(r=>[r.original,r.renamed,r.csv?r.rowIndex+2:'',...state.headers.map(h=>r.csv?.[h]??'')])];
