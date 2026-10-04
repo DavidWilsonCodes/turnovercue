@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="CreativeBatch turns Figma Buzz CSV data into clean exported filenames. Match bulk-created assets to spreadsheet rows, preview names, then download one renamed ZIP and manifest." />
+<title>CreativeBatch — CSV-driven filenames for Figma Buzz exports</title>
+<style>
+:root{--bg:#f7f7f4;--card:#fff;--text:#171d1b;--muted:#66706b;--line:#dde3df;--brand:#6b4eff;--brand2:#5037d6;--soft:#f0edff;--danger:#9d2c2c;--dangerbg:#fdecec;--warn:#8a5a00;--warnbg:#fff4dc;--good:#126b4c;--goodbg:#eaf6f0;--shadow:0 14px 38px rgba(30,24,70,.09)}
+*{box-sizing:border-box}body{margin:0;font:16px/1.5 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}.wrap{max-width:1160px;margin:auto;padding:0 20px}.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}.brand{font-weight:900;font-size:21px;letter-spacing:-.03em}.pill{font-size:12px;font-weight:850;letter-spacing:.05em;border-radius:999px;padding:6px 10px;background:var(--soft);color:var(--brand2)}.hero{text-align:center;padding:62px 0 30px}.hero h1{font-size:clamp(40px,7vw,68px);line-height:1.01;letter-spacing:-.05em;margin:0 auto 18px;max-width:920px}.audience{display:inline-block;background:var(--soft);color:var(--brand2);font-weight:800;font-size:14px;border-radius:999px;padding:8px 12px;margin-bottom:14px}.hero p{font-size:19px;color:var(--muted);max-width:800px;margin:0 auto 22px}.trust{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;font-size:14px;color:var(--muted)}.trust b{color:var(--text)}
+.app{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:24px;margin:28px auto 68px}.toprow{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.toprow h2{margin:0 0 6px;font-size:25px}.sub{color:var(--muted);margin:0}.btn{appearance:none;border:0;border-radius:12px;padding:12px 16px;font-weight:800;cursor:pointer}.btn.primary{background:var(--brand);color:white}.btn.primary:hover{background:var(--brand2)}.btn.secondary{background:#efefed;color:var(--text)}.btn.ghost{background:white;border:1px solid var(--line)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}.drop{display:block;width:100%;border:2px dashed #c8c1ef;background:#fcfbff;border-radius:18px;padding:30px;text-align:center;cursor:pointer;transition:.15s}.drop.csv{border-color:#bfd8cd;background:#fbfefc}.drop.drag{border-color:var(--brand);background:var(--soft)}.drop input{display:none}.small{font-size:13px;color:var(--muted)}.fileline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}.fileline .small{flex:1}.csv-meta{margin-top:10px;padding:10px 12px;background:#f7f8f7;border:1px solid var(--line);border-radius:12px;font-size:13px;color:var(--muted)}
+.rules{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin:22px 0 12px}.field label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:850;margin-bottom:6px}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:#fff}.pattern-help{font-size:13px;color:var(--muted);margin-top:6px}.pattern-help code{background:#f1f2f0;border-radius:6px;padding:2px 5px}.tokenlist{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.token{font-size:12px;background:var(--soft);color:var(--brand2);padding:4px 7px;border-radius:999px;font-weight:750;cursor:pointer;border:0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.stat{border:1px solid var(--line);border-radius:14px;padding:14px}.stat .n{font-size:28px;font-weight:900}.stat .l{font-size:13px;color:var(--muted)}.notice{padding:12px 14px;border-radius:12px;background:var(--goodbg);color:var(--good);margin:14px 0}.notice.bad{background:var(--dangerbg);color:var(--danger)}.notice.warn{background:var(--warnbg);color:var(--warn)}.tablewrap{border:1px solid var(--line);border-radius:14px;overflow:auto}table{width:100%;border-collapse:collapse;min-width:900px}th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}th{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);background:#fafbfa}tr:last-child td{border-bottom:0}.old{color:var(--muted)}.new{font-weight:800}.rowmeta{font-size:12px;color:var(--muted)}.tag{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:850}.tag.ok{background:var(--goodbg);color:var(--good)}.tag.bad{background:var(--dangerbg);color:var(--danger)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.explain{margin:0 0 72px}.section-head{text-align:center;max-width:820px;margin:0 auto 24px}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.11em;color:var(--brand2)}.section-head h2{font-size:clamp(28px,4vw,40px);line-height:1.12;letter-spacing:-.03em;margin:8px 0 10px}.section-head p{color:var(--muted);font-size:17px;margin:0}.how-grid,.benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:white;border:1px solid var(--line);border-radius:18px;padding:22px}.card h3{margin:7px 0 7px}.card p{margin:0;color:var(--muted)}.privacy{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;background:var(--soft);border:1px solid #d8d2ff;border-radius:22px;padding:28px;margin-bottom:72px}.privacy .icon{font-size:36px}.privacy h2{margin:4px 0 7px}.privacy p{margin:0;color:#4f4a6d}.premium{margin:0 0 70px;padding:30px;border-radius:22px;background:#17152a;color:white;display:grid;grid-template-columns:1.3fr .7fr;gap:20px;align-items:center}.premium p,.premium li{color:#d7d2ef}.premium .box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:18px}.footer{border-top:1px solid var(--line);padding:30px 0 45px;color:var(--muted);font-size:14px}.hidden{display:none!important}
+@media(max-width:850px){.upload-grid,.how-grid,.benefit-grid,.premium,.privacy{grid-template-columns:1fr}.rules{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}.toprow{display:block}.toprow .btn{margin-top:12px}}
+@media(max-width:560px){.rules{grid-template-columns:1fr}.app{padding:16px;border-radius:18px}.hero{padding-top:38px}.stats{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav"><div class="brand">CreativeBatch</div><div class="pill">RUN #2 · CSV-DRIVEN PROTOTYPE</div></nav>
+  <section class="hero">
+    <h1>Use your Figma Buzz CSV to name the files Figma exports.</h1>
+    <div class="audience">For teams using Figma Buzz Bulk Create who still rename dozens or hundreds of exports manually.</div>
+    <p>Your spreadsheet already contains the ID, language, page slug, product or campaign name. CreativeBatch maps those CSV rows to the exported files, previews the exact filenames, and gives you one renamed ZIP plus a manifest.</p>
+    <div class="trust"><span>🔒 <b>Files stay in your browser</b></span><span>📄 CSV-driven</span><span>📦 One ZIP</span><span>🧾 Manifest included</span></div>
+  </section>
+
+  <main class="app">
+    <div class="toprow"><div><h2>Map spreadsheet rows to exported assets</h2><p class="sub">Best fit: Figma Buzz bulk-create jobs where row order in the CSV matches asset export order.</p></div><button class="btn ghost" id="demoBtn">Load demo</button></div>
+
+    <div class="upload-grid">
+      <label class="drop" id="assetDrop">
+        <input type="file" id="assetInput" multiple />
+        <div style="font-size:36px">🗂️</div>
+        <strong>1. Drop exported assets</strong><br><span class="small">PNG, JPG, PDF, MP4 or any exported file type</span>
+      </label>
+      <label class="drop csv" id="csvDrop">
+        <input type="file" id="csvInput" accept=".csv,text/csv" />
+        <div style="font-size:36px">📄</div>
+        <strong>2. Drop the source CSV</strong><br><span class="small">The same row data used for Bulk Create</span>
+      </label>
+    </div>
+
+    <div class="fileline"><div class="small" id="fileSummary">No assets loaded yet.</div><button class="btn ghost hidden" id="clearBtn">Clear</button></div>
+    <div id="csvMeta" class="csv-meta hidden"></div>
+
+    <section id="workspace" class="hidden">
+      <div class="rules">
+        <div class="field">
+          <label>Filename pattern</label>
+          <input id="pattern" value="{id}_{language}_{n}" />
+          <div class="pattern-help">Use any CSV header as a token plus <code>{original}</code> <code>{n}</code> <code>{date}</code>.</div>
+          <div class="tokenlist" id="tokenList"></div>
+        </div>
+        <div class="field"><label>Files per CSV row</label><input id="filesPerRow" type="number" min="1" value="1"><div class="pattern-help">Use 3 if each row exports 3 sizes.</div></div>
+        <div class="field"><label>File order</label><select id="sortMode"><option value="natural">Natural filename order</option><option value="drop">Dropped / selected order</option></select></div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="n" id="statFiles">0</div><div class="l">exported files</div></div>
+        <div class="stat"><div class="n" id="statRows">0</div><div class="l">CSV rows</div></div>
+        <div class="stat"><div class="n" id="statMapped">0</div><div class="l">mapped files</div></div>
+        <div class="stat"><div class="n" id="statDupes">0</div><div class="l">duplicate names</div></div>
+      </div>
+
+      <div id="status"></div>
+      <div class="tablewrap">
+        <table><thead><tr><th>#</th><th>Original export</th><th>CSV row</th><th>Generated filename</th><th>Status</th></tr></thead><tbody id="previewBody"></tbody></table>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="zipBtn">Download renamed ZIP</button>
+        <button class="btn secondary" id="csvBtn">Download mapping manifest</button>
+        <button class="btn secondary" id="copyBtn">Copy filename list</button>
+      </div>
+    </section>
+  </main>
+
+  <section class="explain">
+    <div class="section-head"><span class="eyebrow">THE EXACT GAP</span><h2>Bulk Create solved the content. The filename handoff is still manual.</h2><p>Teams can generate 100+ assets from CSV data, but if the exported names do not use the spreadsheet's IDs, slugs or language codes, somebody still has to reconnect those assets to the data by hand.</p></div>
+    <div class="how-grid">
+      <article class="card"><div>1️⃣</div><h3>Export from Figma Buzz</h3><p>Export the generated assets normally. CreativeBatch does not need access to your Figma account.</p></article>
+      <article class="card"><div>2️⃣</div><h3>Reuse the same CSV</h3><p>Drop the spreadsheet that already contains the filenames or metadata you actually want.</p></article>
+      <article class="card"><div>3️⃣</div><h3>Map, verify, download</h3><p>Preview every mapping first, catch row-count or duplicate-name problems, then download the renamed ZIP.</p></article>
+    </div>
+  </section>
+
+  <section class="explain">
+    <div class="section-head"><span class="eyebrow">REAL USE CASES</span><h2>Where CSV-driven naming matters</h2></div>
+    <div class="benefit-grid">
+      <article class="card"><div>🌍</div><h3>30+ languages</h3><p>Turn a CSV language field such as en_GB or es_ES into predictable exported filenames.</p></article>
+      <article class="card"><div>🔗</div><h3>Web page slugs and IDs</h3><p>Name hundreds of OpenGraph or content-pipeline assets from a page slug, SKU, video ID or record key.</p></article>
+      <article class="card"><div>📣</div><h3>Campaign variants</h3><p>Combine campaign, concept, audience or version columns into a filename convention without typing them again.</p></article>
+    </div>
+  </section>
+
+  <section class="privacy"><div class="icon">🔒</div><div><span class="eyebrow">PRIVATE BY DESIGN</span><h2>Your CSV and creative files stay on your device</h2><p>CreativeBatch parses the spreadsheet locally, reads the export files locally, creates renamed copies locally, and builds the ZIP locally. Nothing is uploaded to a CreativeBatch server.</p></div></section>
+
+  <section class="premium">
+    <div><div class="pill" style="display:inline-block;background:#ece8ff">ONLY IF USAGE EARNS IT</div><h2 style="font-size:32px;margin:12px 0 8px">The paid version belongs inside Figma, not after export.</h2><p>If this workaround gets repeat use, the stronger product is a Figma/Buzz workflow that uses selected CSV fields to name frames and exported assets before they ever hit Downloads.</p><ul><li>Select one or more CSV fields as the filename rule</li><li>Saved mappings per template or client</li><li>Bulk frame naming before export</li><li>Separate PNG/PDF naming and export rules</li><li>Team naming standards and QA checks</li></ul></div>
+    <div class="box"><strong>Possible future Pro</strong><div style="font-size:35px;font-weight:900;margin:7px 0">A$5–A$15<span style="font-size:16px;font-weight:500"> / month</span></div><div style="color:#d7d2ef">Only after repeat use or explicit willingness to pay.</div></div>
+  </section>
+
+  <footer class="footer"><strong>CreativeBatch</strong> is an independent market-test prototype and is not affiliated with Figma. Always verify the mapping preview before using exported files in production.</footer>
+</div>
+
+<script>
+(() => {
+  const $=id=>document.getElementById(id);
+  const state={files:[],csvRows:[],headers:[],demo:false};
+  const enc=new TextEncoder();
+  const clean=s=>String(s??'').trim().replace(/\s+/g,'-').replace(/[\\/:*?"<>|]+/g,'-').replace(/-+/g,'-').replace(/^[-_.]+|[-_.]+$/g,'')||'untitled';
+  const baseName=name=>name.replace(/\.[^.]+$/,'');
+  const ext=name=>{const m=name.match(/(\.[^.]+)$/);return m?m[1].toLowerCase():''};
+  const pad=(n,w=2)=>String(n).padStart(w,'0');
+  const dateToken=()=>{const d=new Date();return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())};
+  const natural=(a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true,sensitivity:'base'});
+  const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+
+  function parseCSV(text){
+    const rows=[];let row=[],cell='',quoted=false;
+    for(let i=0;i<text.length;i++){
+      const c=text[i],next=text[i+1];
+      if(c==='"' && quoted && next==='"'){cell+='"';i++;continue;}
+      if(c==='"'){quoted=!quoted;continue;}
+      if(c===',' && !quoted){row.push(cell);cell='';continue;}
+      if((c==='\n'||c==='\r') && !quoted){
+        if(c==='\r'&&next==='\n')i++;
+        row.push(cell);cell='';
+        if(row.some(v=>String(v).trim()!==''))rows.push(row);
+        row=[];continue;
+      }
+      cell+=c;
+    }
+    row.push(cell);if(row.some(v=>String(v).trim()!==''))rows.push(row);
+    if(!rows.length)return {headers:[],rows:[]};
+    const headers=rows[0].map((h,i)=>clean(h).toLowerCase()||('column_'+(i+1)));
+    const data=rows.slice(1).map(values=>{
+      const obj={};headers.forEach((h,i)=>obj[h]=(values[i]??'').trim());return obj;
+    });
+    return {headers,rows:data};
+  }
+
+  function orderedFiles(){
+    return $('sortMode').value==='drop' ? [...state.files] : [...state.files].sort(natural);
+  }
+
+  function currentRows(){
+    const files=orderedFiles(),per=Math.max(1,parseInt($('filesPerRow').value||'1',10));
+    const pattern=$('pattern').value.trim()||'{n}_{original}';
+    return files.map((file,i)=>{
+      const rowIndex=Math.floor(i/per);
+      const csv=state.csvRows[rowIndex]||null;
+      let stem=pattern;
+      const builtins={original:clean(baseName(file.name)),n:pad(i+1,Math.max(2,String(files.length).length)),date:dateToken(),part:pad((i%per)+1,Math.max(2,String(per).length))};
+      stem=stem.replace(/\{([^{}]+)\}/g,(all,key)=>{
+        const k=clean(key).toLowerCase();
+        if(Object.prototype.hasOwnProperty.call(builtins,k))return builtins[k];
+        if(csv && Object.prototype.hasOwnProperty.call(csv,k))return clean(csv[k]);
+        return all;
+      });
+      stem=stem.replace(/\{[^{}]+\}/g,'missing').replace(/\.[^.]+$/,'').replace(/[\\/:*?"<>|]+/g,'-').replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^[-_.]+|[-_.]+$/g,'')||'untitled';
+      return {file,index:i+1,rowIndex,csv,original:file.name,renamed:stem+ext(file.name)};
+    });
+  }
+
+  function renderTokens(){
+    const tokens=[...state.headers,'original','n','date','part'];
+    $('tokenList').innerHTML=tokens.map(t=>'<button type="button" class="token" data-token="'+escapeHtml(t)+'">{'+escapeHtml(t)+'}</button>').join('');
+    $('tokenList').querySelectorAll('.token').forEach(b=>b.onclick=()=>{
+      const input=$('pattern'),token='{'+b.dataset.token+'}',start=input.selectionStart??input.value.length,end=input.selectionEnd??start;
+      input.value=input.value.slice(0,start)+token+input.value.slice(end);input.focus();input.setSelectionRange(start+token.length,start+token.length);render();
+    });
+  }
+
+  function render(){
+    const hasFiles=state.files.length>0;
+    $('workspace').classList.toggle('hidden',!hasFiles);
+    $('clearBtn').classList.toggle('hidden',!hasFiles&&!state.csvRows.length);
+    $('fileSummary').textContent=hasFiles?(state.demo?state.files.length+' demo export filenames loaded.':state.files.length+' export files loaded.'):'No assets loaded yet.';
+    $('csvMeta').classList.toggle('hidden',!state.csvRows.length);
+    if(state.csvRows.length)$('csvMeta').innerHTML='<strong>'+state.csvRows.length+' CSV data rows</strong> · headers: '+state.headers.map(h=>'<code>'+escapeHtml(h)+'</code>').join(' · ');
+    renderTokens();
+    if(!hasFiles)return;
+
+    const rows=currentRows(),per=Math.max(1,parseInt($('filesPerRow').value||'1',10));
+    const expected=state.csvRows.length*per;
+    const counts={};rows.forEach(r=>counts[r.renamed]=(counts[r.renamed]||0)+1);
+    const dupes=new Set(rows.filter(r=>counts[r.renamed]>1).map(r=>r.renamed));
+    const mapped=rows.filter(r=>r.csv).length;
+    $('previewBody').innerHTML=rows.map(r=>{
+      const bad=counts[r.renamed]>1||!r.csv;
+      const meta=r.csv?state.headers.slice(0,3).map(h=>h+': '+(r.csv[h]||'—')).join(' · '):'No CSV row';
+      return '<tr><td>'+r.index+'</td><td class="old">'+escapeHtml(r.original)+'</td><td><div>Row '+(r.csv?(r.rowIndex+2):'—')+'</div><div class="rowmeta">'+escapeHtml(meta)+'</div></td><td class="new">'+escapeHtml(r.renamed)+'</td><td><span class="tag '+(bad?'bad':'ok')+'">'+(counts[r.renamed]>1?'DUPLICATE':(!r.csv?'UNMAPPED':'READY'))+'</span></td></tr>';
+    }).join('');
+    $('statFiles').textContent=rows.length;$('statRows').textContent=state.csvRows.length;$('statMapped').textContent=mapped;$('statDupes').textContent=dupes.size;
+    const mismatch=!state.csvRows.length||expected!==state.files.length;
+    if(!state.csvRows.length)$('status').innerHTML='<div class="notice warn"><strong>Add the source CSV.</strong> You can preview generic numbering now, but CSV-driven naming starts after the spreadsheet is loaded.</div>';
+    else if(expected!==state.files.length)$('status').innerHTML='<div class="notice bad"><strong>Count mismatch.</strong> '+state.csvRows.length+' CSV rows × '+per+' files per row expects '+expected+' files, but '+state.files.length+' are loaded. Fix this before export.</div>';
+    else if(dupes.size)$('status').innerHTML='<div class="notice bad"><strong>Duplicate filenames detected.</strong> Add another CSV field, {part}, or {n} to the pattern.</div>';
+    else $('status').innerHTML='<div class="notice"><strong>Mapping is internally consistent.</strong> Row count matches the asset count and every generated filename is unique. Still visually inspect the preview before export.</div>';
+    const blocked=state.demo||mismatch||dupes.size>0;
+    $('zipBtn').disabled=blocked;$('csvBtn').disabled=!state.csvRows.length||dupes.size>0;$('copyBtn').disabled=!state.csvRows.length||dupes.size>0;
+  }
+
+  function handleAssets(list){const files=[...list].filter(f=>f&&f.name);if(!files.length)return;state.files=files;state.demo=false;render();}
+  async function handleCSV(file){
+    if(!file)return;const parsed=parseCSV(await file.text());state.headers=parsed.headers;state.csvRows=parsed.rows;state.demo=false;
+    if(state.headers.length && !$('pattern').dataset.userEdited){
+      const likely=state.headers.find(h=>/(filename|slug|id|code|language|locale|name)/.test(h))||state.headers[0];
+      $('pattern').value='{'+likely+'}_{n}';
+    }
+    render();
+  }
+
+  function wireDrop(zone,input,handler){
+    input.addEventListener('change',e=>handler(e.target.files?e.target.files:(e.target.files?.[0])));
+    ['dragenter','dragover'].forEach(ev=>zone.addEventListener(ev,e=>{e.preventDefault();zone.classList.add('drag')}));
+    ['dragleave','drop'].forEach(ev=>zone.addEventListener(ev,e=>{e.preventDefault();zone.classList.remove('drag')}));
+  }
+  wireDrop($('assetDrop'),$('assetInput'),handleAssets);
+  $('assetDrop').addEventListener('drop',e=>{e.preventDefault();handleAssets(e.dataTransfer.files)});
+  wireDrop($('csvDrop'),$('csvInput'),()=>{});
+  $('csvInput').addEventListener('change',e=>handleCSV(e.target.files[0]));
+  $('csvDrop').addEventListener('drop',e=>{e.preventDefault();const f=[...e.dataTransfer.files].find(x=>/\.csv$/i.test(x.name)||x.type==='text/csv');handleCSV(f)});
+
+  $('pattern').addEventListener('input',()=>{$('pattern').dataset.userEdited='1';render()});
+  ['filesPerRow','sortMode'].forEach(id=>$(id).addEventListener('input',render));
+  $('clearBtn').onclick=()=>{state.files=[];state.csvRows=[];state.headers=[];state.demo=false;$('assetInput').value='';$('csvInput').value='';delete $('pattern').dataset.userEdited;$('pattern').value='{id}_{language}_{n}';render();};
+
+  $('demoBtn').onclick=()=>{
+    const names=['Frame 1.png','Frame 2.png','Frame 3.png','Frame 4.png','Frame 5.png','Frame 6.png'];
+    state.files=names.map(name=>({name,size:0,type:'image/png'}));
+    state.headers=['id','language','page_slug'];
+    state.csvRows=[
+      {id:'hero-001',language:'en_GB',page_slug:'pricing'},
+      {id:'hero-002',language:'es_ES',page_slug:'pricing'},
+      {id:'hero-003',language:'de_DE',page_slug:'pricing'},
+      {id:'hero-004',language:'fr_FR',page_slug:'pricing'},
+      {id:'hero-005',language:'it_IT',page_slug:'pricing'},
+      {id:'hero-006',language:'nl_NL',page_slug:'pricing'}
+    ];
+    state.demo=true;$('filesPerRow').value='1';$('pattern').value='{page_slug}_{language}_{id}';delete $('pattern').dataset.userEdited;render();
+  };
+
+  $('copyBtn').onclick=async()=>{const text=currentRows().map(r=>r.renamed).join('\n');try{await navigator.clipboard.writeText(text);const b=$('copyBtn'),old=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=old,1100)}catch{alert('Copy failed.')}};
+  $('csvBtn').onclick=()=>{
+    const rows=currentRows();const headers=['original_filename','renamed_filename','csv_row',...state.headers];
+    const data=[headers,...rows.map(r=>[r.original,r.renamed,r.csv?r.rowIndex+2:'',...state.headers.map(h=>r.csv?.[h]??'')])];
+    const csv=data.map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');downloadBlob(new Blob([csv],{type:'text/csv'}),'creativebatch-mapping.csv');
+  };
+
+  function crcTable(){const table=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?0xedb88320^(c>>>1):c>>>1;table[n]=c>>>0;}return table}
+  const CRC=crcTable();
+  function crc32(bytes){let c=0xffffffff;for(const b of bytes)c=CRC[(c^b)&0xff]^(c>>>8);return (c^0xffffffff)>>>0}
+  function dosTimeDate(d=new Date()){let time=(d.getHours()<<11)|(d.getMinutes()<<5)|(d.getSeconds()>>1);let date=((d.getFullYear()-1980)<<9)|((d.getMonth()+1)<<5)|d.getDate();return {time,date}}
+  function u16(v){return new Uint8Array([v&255,(v>>>8)&255])}
+  function u32(v){return new Uint8Array([v&255,(v>>>8)&255,(v>>>16)&255,(v>>>24)&255])}
+  function join(parts){const len=parts.reduce((n,p)=>n+p.length,0),out=new Uint8Array(len);let o=0;for(const p of parts){out.set(p,o);o+=p.length}return out}
+  async function makeZip(rows){
+    const locals=[],centrals=[];let offset=0;
+    for(const r of rows){
+      const data=new Uint8Array(await r.file.arrayBuffer()),name=enc.encode(r.renamed),crc=crc32(data),size=data.length,{time,date}=dosTimeDate(r.file.lastModified?new Date(r.file.lastModified):new Date());
+      const local=join([u32(0x04034b50),u16(20),u16(0x0800),u16(0),u16(time),u16(date),u32(crc),u32(size),u32(size),u16(name.length),u16(0),name,data]);locals.push(local);
+      const central=join([u32(0x02014b50),u16(20),u16(20),u16(0x0800),u16(0),u16(time),u16(date),u32(crc),u32(size),u32(size),u16(name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(offset),name]);centrals.push(central);offset+=local.length;
+    }
+    const centralBlock=join(centrals),end=join([u32(0x06054b50),u16(0),u16(0),u16(rows.length),u16(rows.length),u32(centralBlock.length),u32(offset),u16(0)]);
+    return new Blob([...locals,centralBlock,end],{type:'application/zip'});
+  }
+  $('zipBtn').onclick=async()=>{
+    const b=$('zipBtn'),old=b.textContent;b.disabled=true;b.textContent='Building ZIP…';
+    try{downloadBlob(await makeZip(currentRows()),'creativebatch-renamed.zip')}catch(err){console.error(err);alert('Could not build the ZIP. Try a smaller batch.')}finally{b.textContent=old;render()}
+  };
+  function downloadBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+  render();
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1463102e3eca4e19ba588d129178e34e"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
